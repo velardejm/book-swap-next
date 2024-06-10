@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <div
@@ -18,7 +20,7 @@ export default function Hero() {
             book lovers. Buy, sell, swap — and let stories unfold among fellow
             enthusiasts!
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <Link href="/books" className="btn btn-primary">Get Started</Link>
         </div>
       </div>
     </div>

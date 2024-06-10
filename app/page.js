@@ -4,7 +4,6 @@ import Hero from "./ui/components/hero";
 export default function Home() {
   return (
     <main>
-      <NavBar />
       <Hero />
     </main>
   );
