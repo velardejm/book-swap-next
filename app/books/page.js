@@ -4,10 +4,8 @@
 
 export default async function Books() {
 
-  const response = await fetch("http://localhost:3000/api", { cache: 'no-store' });
-  // console.log(response);
+  const response = await fetch("http://localhost:3001/api", { cache: 'no-store' });
   const myBooks = await response.json();
-  console.log(myBooks);
 
 
   return (

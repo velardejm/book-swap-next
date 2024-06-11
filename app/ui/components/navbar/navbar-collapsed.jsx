@@ -1,6 +1,6 @@
-import Link from "next/link";
+import NavbarLinks from "./navbar-links";
 
-export default function NavbarDropdown() {
+export default function NavbarCollapsed() {
   return (
     <>
       <div className="dropdown dropdown-end">
@@ -24,12 +24,7 @@ export default function NavbarDropdown() {
           tabIndex={0}
           className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li>
-            <Link href="/books"> Item 1</Link>
-          </li>
-          <li>
-            <Link href="/"> Item 2</Link>
-          </li>
+          <NavbarLinks />
         </ul>
       </div>
     </>

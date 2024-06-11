@@ -20,7 +20,14 @@ export default function Hero() {
             book lovers. Buy, sell, swap — and let stories unfold among fellow
             enthusiasts!
           </p>
-          <Link href="/books" className="btn btn-primary">Get Started</Link>
+          <div>
+            <Link href="/books" className="btn btn-primary mr-5">
+              Explore Books
+            </Link>
+            <Link href="/books" className="btn btn-secondary">
+              Sign Up
+            </Link>
+          </div>
         </div>
       </div>
     </div>
