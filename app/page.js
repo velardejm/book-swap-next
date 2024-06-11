@@ -1,9 +1,11 @@
+"use client";
+
 import NavBar from "./ui/components/navbar/navbar";
 import Hero from "./ui/components/hero";
 
 export default function Home() {
   return (
-    <main>
+    <main onClick={() => alert("test")}>
       <Hero />
     </main>
   );

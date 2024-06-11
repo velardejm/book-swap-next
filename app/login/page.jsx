@@ -28,10 +28,12 @@ export default function LogIn() {
               clipRule="evenodd"
             />
           </svg>
-          <input type="password" className="grow" />
+          <input type="password" className="grow" placeholder="Password" />
         </label>
 
-        <button className="btn btn-secondary block mx-auto mt-8 px-8">Log In</button>
+        <button className="btn btn-secondary block mx-auto mt-8 px-8">
+          Log In
+        </button>
       </form>
     </div>
   );

@@ -1,10 +1,10 @@
-import NavbarLinks from "./navbar-links";
+import NavLinks from "./nav-links";
 
-export default function NavbarExpanded() {
+export default function NavExpanded() {
   return (
     <>
       <ul className="menu menu-horizontal px-1 hidden lg:flex">
-        <NavbarLinks />
+        <NavLinks />
       </ul>
     </>
   );

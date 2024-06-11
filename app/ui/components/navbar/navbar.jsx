@@ -1,6 +1,6 @@
 import Link from "next/link";
-import NavbarExpanded from "./navbar-expanded";
-import NavbarCollapsed from "./navbar-collapsed";
+import NavDropdown from "./nav-dropdown";
+import NavExpanded from "./nav-expanded";
 
 export default function NavBar() {
   return (
@@ -14,8 +14,8 @@ export default function NavBar() {
       <div className="navbar-center hidden lg:flex"></div>
 
       <div className="navbar-end">
-        <NavbarExpanded />
-        <NavbarCollapsed />
+        <NavDropdown />
+        <NavExpanded />
       </div>
     </div>
   );
