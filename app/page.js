@@ -1,7 +1,12 @@
+"use client";
+
+import NavBar from "./ui/components/navbar/navbar";
+import Hero from "./ui/components/hero";
+
 export default function Home() {
   return (
-    <main>
-      <h1>Book Swap</h1>
+    <main onClick={() => alert("test")}>
+      <Hero />
     </main>
   );
 }
