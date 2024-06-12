@@ -1,18 +1,18 @@
 "use client";
 
-import LogIn from "./login";
+import SignUp from "./signup";
 
-export default function LoginModal() {
+export default function SignupModal() {
   return (
     <>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <button
-        className="btn mr-2"
-        onClick={() => document.getElementById("my_modal_1").showModal()}
+        className="btn"
+        onClick={() => document.getElementById("my_modal_2").showModal()}
       >
-        Log In
+        Sign Up
       </button>
-      <dialog id="my_modal_1" className="modal">
+      <dialog id="my_modal_2" className="modal">
         <div className="modal-box flex flex-col">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
@@ -20,8 +20,8 @@ export default function LoginModal() {
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">Log In</h3>
-          <LogIn />
+          <h3 className="font-bold text-lg">Sign Up</h3>
+          <SignUp />
         </div>
       </dialog>
     </>

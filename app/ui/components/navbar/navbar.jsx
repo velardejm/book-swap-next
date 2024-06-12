@@ -2,6 +2,7 @@ import Link from "next/link";
 import NavDropdown from "./nav-dropdown";
 import NavExpanded from "./nav-expanded";
 import LoginModal from "./login-modal";
+import SignupModal from "./signup-modal";
 
 export default function NavBar() {
   return (
@@ -16,6 +17,7 @@ export default function NavBar() {
 
       <div className="navbar-end">
         <LoginModal />
+        <SignupModal />
         <NavDropdown />
         <NavExpanded />
       </div>
