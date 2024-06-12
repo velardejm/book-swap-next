@@ -1,15 +1,18 @@
+"use client";
+import { useRef } from "react";
+
 import Link from "next/link";
 import MenuButton from "./menu-button";
 
 export default function DashboardNavbar() {
+  const menuButtonRef = useRef(null);
   return (
     <>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
-          {" "}
           <div className="drawer-content">
             {/* Page content here */}
-            <label htmlFor="my-drawer" className="">
+            <label htmlFor="my-drawer" ref={menuButtonRef}>
               <MenuButton />
             </label>
           </div>
@@ -24,7 +27,7 @@ export default function DashboardNavbar() {
         <div className="navbar-end"></div>
       </div>
 
-      <div className="drawer">
+      <div className="drawer z-50">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
         <div className="drawer-side">
@@ -35,11 +38,15 @@ export default function DashboardNavbar() {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            <li>
-              <a>Sidebar Item 1</a>
+            <li onClick={() => menuButtonRef.current.click()}>
+              <Link className="" href="/dashboard">
+                My Books
+              </Link>
             </li>
-            <li>
-              <a>Sidebar Item 2</a>
+            <li onClick={() => menuButtonRef.current.click()}>
+              <Link className="" href="/dashboard/requests">
+                Requests
+              </Link>
             </li>
           </ul>
         </div>
