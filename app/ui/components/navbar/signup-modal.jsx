@@ -1,8 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import SignupP1 from "../signup/signup-p1";
+import SignupP2 from "../signup/signup-p2";
 
 export default function SignupModal() {
+  const [page, setPage] = useState(1);
+
   return (
     <>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
@@ -14,11 +19,17 @@ export default function SignupModal() {
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">Sign Up</h3>
+          <h3 className="font-bold text-lg mb-8">Sign Up</h3>
 
           {/* Sign Up Form */}
-    
-          <SignupP1 />
+
+          <div className={`${page === 1 ? "" : "hidden"} flex flex-col`}>
+            <SignupP1 setPage={setPage} />
+          </div>
+
+          <div className={`${page === 2 ? "" : "hidden"} flex flex-col`}>
+            <SignupP2 setPage={setPage} />
+          </div>
 
           {/* <form className="mt-8 w-72 self-center">
             <label className="input input-bordered flex items-center gap-2 mb-4">
