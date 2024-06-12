@@ -5,7 +5,8 @@ import Hero from "./ui/components/hero";
 
 export default function Home() {
   return (
-    <main onClick={() => alert("test")}>
+    <main>
+      <NavBar />
       <Hero />
     </main>
   );

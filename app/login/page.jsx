@@ -1,8 +1,13 @@
+import Link from "next/link";
+
 export default function LogIn() {
   return (
-    <div className="w-72 mx-auto">
+    <div className="flex flex-col">
+      <Link className="font-bold text-xl w-10 p-4" href="/">
+        BookSwap
+      </Link>
       <h1 className="text-center text-2xl font-bold">Log In</h1>
-      <form className="mt-10">
+      <form className="mt-10 w-72 self-center">
         <label className="input input-bordered flex items-center gap-2 mb-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
