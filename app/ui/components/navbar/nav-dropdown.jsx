@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import MenuButton from "./menu-button";
 import NavLinks from "./nav-links";
 
 export default function NavDropdown() {
@@ -13,27 +14,7 @@ export default function NavDropdown() {
   return (
     <>
       <div className="lg:hidden">
-        <div
-          tabIndex={0}
-          role="button"
-          className="btn btn-ghost lg:hidden"
-          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h8m-8 6h16"
-            />
-          </svg>
-        </div>
+        <MenuButton clickHandler={() => setIsDropdownOpen(!isDropdownOpen)} />
         {isDropdownOpen && (
           <div className="relative">
             <ul
