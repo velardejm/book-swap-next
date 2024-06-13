@@ -2,38 +2,29 @@ export default function Request() {
   return (
     <>
       <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
         <td>
-          <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
-                <img
-                  src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                  alt="Avatar Tailwind CSS Component"
-                />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">Hart Hagerty</div>
-              <div className="text-sm opacity-50">United States</div>
-            </div>
+          Requested Book Title
+          <br />
+          <button className="btn btn-outline btn-xs text-blue-400 ">
+            book details
+          </button>
+        </td>
+        <td>
+          Offerred Book Title <br />
+          <button className="btn btn-outline btn-xs text-blue-400 ">
+            book details
+          </button>
+        </td>
+        <td>
+          <div className="flex">
+            <button className="btn btn-outline btn-xs text-green-500 mr-4">
+              Accept
+            </button>
+            <button className="btn btn-outline btn-xs text-red-500">
+              Reject
+            </button>
           </div>
         </td>
-        <td>
-          Zemlak, Daniel and Leannon
-          <br />
-          <span className="badge badge-ghost badge-sm">
-            Desktop Support Technician
-          </span>
-        </td>
-        <td>Purple</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
       </tr>
     </>
   );

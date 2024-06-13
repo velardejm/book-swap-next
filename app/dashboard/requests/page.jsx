@@ -3,19 +3,16 @@ import Request from "./request";
 export default function Requests() {
   return (
     <>
-      <div className="overflow-x-auto">
+      <h2 className="text-center mt-10 mb-4 text-2xl font-bold">
+        Swap Requests
+      </h2>
+      <div className="overflow-x-auto mx-10">
         <table className="table">
           {/* head */}
           <thead>
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Requested Book</th>
+              <th>Offerred Book</th>
               <th></th>
             </tr>
           </thead>
@@ -28,15 +25,7 @@ export default function Requests() {
             <Request />
           </tbody>
           {/* foot */}
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
-            </tr>
-          </tfoot>
+          <tfoot></tfoot>
         </table>
       </div>
     </>

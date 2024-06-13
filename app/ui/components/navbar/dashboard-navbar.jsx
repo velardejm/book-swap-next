@@ -24,7 +24,9 @@ export default function DashboardNavbar() {
           </Link>
         </div>
 
-        <div className="navbar-end"></div>
+        <div className="navbar-end">
+          <button className="lg:btn lg:content-center mr-2">Log Out</button>
+        </div>
       </div>
 
       <div className="drawer z-50">

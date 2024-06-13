@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import NavBar from "./ui/components/navbar/navbar";
 import Hero from "./ui/components/hero";

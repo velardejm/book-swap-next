@@ -1,18 +1,44 @@
 import BookCard from "../ui/components/dashboard/book-card";
+import DeleteBookModal from "./delete-book-modal";
 
-export default function MyBooks() {
+export default async function MyBooks() {
+  const response = await fetch("http://localhost:8000/api", {
+    cache: "no-store",
+  });
+  let myBooks = await response.json();
+  let toDeleteId = null;
+
+  const deleteBook = (id) => {
+    toDeleteId = id;
+  };
+
   return (
     <>
-      <div className="flex flex-wrap justify-center mx-4">
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
+      <h2 className="text-center mt-10 mb-4 text-2xl font-bold">My Books</h2>
+      <div className="overflow-x-auto mx-10">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Genre</th>
+              <th>Owner</th>
+              <th>Condition</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* rows */}
+            {myBooks.map((book, index) => {
+              return <BookCard key={index} book={book} />;
+            })}
+          </tbody>
+          {/* foot */}
+          <tfoot></tfoot>
+        </table>
       </div>
+      <DeleteBookModal />
     </>
   );
 }
