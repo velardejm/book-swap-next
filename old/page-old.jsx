@@ -1,4 +1,4 @@
-import BookCard from "../ui/components/dashboard/book-card";
+import BookCard from "@/components/dashboard/book-card";
 
 export default function MyBooks() {
   return (

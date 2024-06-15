@@ -2,8 +2,8 @@
 
 import { useFormState } from "react-dom";
 import { handleSubmit } from "@/lib/actions";
-import SubmitButton from "./submit-button";
-import TestAlert from "./alert";
+import SubmitButton from "@/components/test/submit-button";
+import TestAlert from "@/components/test/alert";
 import { useEffect, useState } from "react";
 
 export default function Test() {

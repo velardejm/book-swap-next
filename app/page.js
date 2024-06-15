@@ -1,7 +1,7 @@
 // "use client";
 
-import NavBar from "./ui/components/navbar/navbar";
-import Hero from "./ui/components/hero";
+import NavBar from "@/components/navbar/navbar";
+import Hero from "@/components/hero";
 
 export default function Home() {
   return (

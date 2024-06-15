@@ -1,5 +1,5 @@
-import BookCard from "../ui/components/dashboard/book-card";
-import DeleteBookModal from "./delete-book-modal";
+import BookCard from "@/components/dashboard/book-card";
+import DeleteBookModal from "@/components/dashboard/delete-book-modal";
 
 export default async function MyBooks() {
   const response = await fetch("http://localhost:8000/api", {

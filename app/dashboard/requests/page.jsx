@@ -1,4 +1,4 @@
-import Request from "./request";
+import Request from "@/components/dashboard/request";
 
 export default function Requests() {
   return (
