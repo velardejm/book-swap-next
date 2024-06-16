@@ -1,10 +1,17 @@
 import { NextResponse } from "next/server";
+import { checkSession } from "./lib/lib";
 
-export function middleware(request) {
-  //   return NextResponse.redirect(new URL("/books", request.url));
-  return NextResponse.next();
+export async function middleware(request) {
+  const session = await checkSession();
+  // console.log(session);
+  if (!session) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+  // if (await checkSession()) {
+  //   return NextResponse.next();
+  // } else NextResponse.redirect(new URL("/", request.url));
 }
 
 export const config = {
-  matcher: "/test",
+  matcher: "/books",
 };

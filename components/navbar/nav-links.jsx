@@ -1,15 +1,20 @@
 "use client";
 
+import Link from "next/link";
+
 export default function NavLinks() {
   return (
     <>
       <li>
-        <button
+        {/* <button
           className="lg:btn lg:content-center mr-2"
           onClick={() => document.getElementById("my_modal_1").showModal()}
         >
           Log In
-        </button>
+        </button> */}
+        <Link className="lg:btn lg:content-center mr-2" href="/login">
+          Log In
+        </Link>
       </li>
       <li>
         <button
