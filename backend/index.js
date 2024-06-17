@@ -33,7 +33,6 @@ app.post("/login", async (req, res) => {
   }
 
   if (await bcrypt.compare(password, foundUser.password)) {
-    console.log("Test");
     res.statusCode = 200;
     return res.json({ username: foundUser.username, userId: foundUser.id });
   } else {

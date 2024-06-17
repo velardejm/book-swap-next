@@ -1,17 +1,19 @@
 "use client";
 
 import { handleLogin } from "@/lib/actions";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+import Alert from "../common/alert";
 
 export default function LoginModal() {
   const [errorMessage, setErrorMessage] = useState(null);
+  const [loginAttempts, setLoginAttempts] = useState(0);
 
   const loginAction = async (formData) => {
     const response = handleLogin(formData);
     const responseData = await response;
+    console.log(responseData);
     setErrorMessage(responseData);
-    // alert(responseData);
-    // console.log(responseData);
   };
 
   return (
@@ -67,37 +69,11 @@ export default function LoginModal() {
               />
             </label>
 
-            <button
-              className="btn btn-secondary block mx-auto mt-8 px-8"
-              onClick={() => {
-                if (errorMessage) {
-                  document.getElementById("login_error_modal").showModal();
-                }
-              }}
-            >
+            <button className="btn btn-secondary block mx-auto mt-8 px-8">
               Log In
             </button>
           </form>
-        </div>
-      </dialog>
-
-      <dialog id="login_error_modal" className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Error</h3>
-          <p className="py-4">{errorMessage}</p>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button
-                className="btn"
-                onClick={() => {
-                  setErrorMessage(null);
-                }}
-              >
-                Close
-              </button>
-            </form>
-          </div>
+          {errorMessage && <Alert message={errorMessage} />}
         </div>
       </dialog>
     </>
