@@ -27,7 +27,7 @@ export default function LogIn() {
           />
         </label>
 
-        {/* <label className="input input-bordered flex items-center gap-2">
+        <label className="input input-bordered flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -40,8 +40,13 @@ export default function LogIn() {
               clipRule="evenodd"
             />
           </svg>
-          <input type="password" className="grow" placeholder="Password" />
-        </label> */}
+          <input
+            type="password"
+            className="grow"
+            placeholder="Password"
+            name="password"
+          />
+        </label>
 
         <button className="btn btn-secondary block mx-auto mt-8 px-8">
           Log In
