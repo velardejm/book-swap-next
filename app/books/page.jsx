@@ -4,7 +4,7 @@ export default async function Books() {
   });
   // console.log(response);
   const myBooks = await response.json();
-  console.log(myBooks);
+  // console.log(myBooks);
 
   return (
     <div>

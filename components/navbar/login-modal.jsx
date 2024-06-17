@@ -1,6 +1,19 @@
 "use client";
 
+import { handleLogin } from "@/lib/actions";
+import { useState, useEffect } from "react";
+
 export default function LoginModal() {
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const loginAction = async (formData) => {
+    const response = handleLogin(formData);
+    const responseData = await response;
+    setErrorMessage(responseData);
+    // alert(responseData);
+    // console.log(responseData);
+  };
+
   return (
     <>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
@@ -15,7 +28,7 @@ export default function LoginModal() {
           <h3 className="font-bold text-lg">Log In</h3>
 
           {/* Log In Form */}
-          <form className="mt-8 w-72 self-center">
+          <form className="mt-8 w-72 self-center" action={loginAction}>
             <label className="input input-bordered flex items-center gap-2 mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +38,12 @@ export default function LoginModal() {
               >
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
               </svg>
-              <input type="text" className="grow" placeholder="Username" />
+              <input
+                type="text"
+                className="grow"
+                placeholder="Username"
+                name="username"
+              />
             </label>
 
             <label className="input input-bordered flex items-center gap-2">
@@ -41,13 +59,45 @@ export default function LoginModal() {
                   clipRule="evenodd"
                 />
               </svg>
-              <input type="password" className="grow" placeholder="Password" />
+              <input
+                type="password"
+                className="grow"
+                placeholder="Password"
+                name="password"
+              />
             </label>
 
-            <button className="btn btn-secondary block mx-auto mt-8 px-8">
+            <button
+              className="btn btn-secondary block mx-auto mt-8 px-8"
+              onClick={() => {
+                if (errorMessage) {
+                  document.getElementById("login_error_modal").showModal();
+                }
+              }}
+            >
               Log In
             </button>
           </form>
+        </div>
+      </dialog>
+
+      <dialog id="login_error_modal" className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Error</h3>
+          <p className="py-4">{errorMessage}</p>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button
+                className="btn"
+                onClick={() => {
+                  setErrorMessage(null);
+                }}
+              >
+                Close
+              </button>
+            </form>
+          </div>
         </div>
       </dialog>
     </>

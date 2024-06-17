@@ -6,15 +6,15 @@ export default function NavLinks() {
   return (
     <>
       <li>
-        {/* <button
+        <button
           className="lg:btn lg:content-center mr-2"
           onClick={() => document.getElementById("my_modal_1").showModal()}
         >
           Log In
-        </button> */}
-        <Link className="lg:btn lg:content-center mr-2" href="/login">
+        </button>
+        {/* <Link className="lg:btn lg:content-center mr-2" href="/login">
           Log In
-        </Link>
+        </Link> */}
       </li>
       <li>
         <button

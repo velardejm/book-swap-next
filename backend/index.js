@@ -29,16 +29,16 @@ app.post("/login", async (req, res) => {
 
   if (!foundUser) {
     res.statusCode = 404;
-    res.json({ message: "Username not found" });
+    return res.json({ message: "Username not found" });
   }
 
   if (await bcrypt.compare(password, foundUser.password)) {
     console.log("Test");
     res.statusCode = 200;
-    res.json({ username: foundUser.username, userId: foundUser.id });
+    return res.json({ username: foundUser.username, userId: foundUser.id });
   } else {
     res.statusCode = 401;
-    res.json({ message: "Incorrect password" });
+    return res.json({ message: "Incorrect password" });
   }
 });
 
