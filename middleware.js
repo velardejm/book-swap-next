@@ -3,7 +3,6 @@ import { checkSession } from "./lib/lib";
 
 export async function middleware(request) {
   const session = await checkSession();
-  // console.log(session);
   if (!session) {
     return NextResponse.redirect(new URL("/", request.url));
   }
