@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 
 import { pool } from "./db.js";
+import { use } from "bcrypt/promises.js";
 
 const app = express();
 
@@ -39,6 +40,20 @@ app.post("/login", async (req, res) => {
     res.statusCode = 401;
     return res.json({ message: "Incorrect password" });
   }
+});
+
+app.post("/signup", async (req, res) => {
+  const { email, username } = req.body;
+  const sqlCheckEmail =
+    "SELECT EXISTS (SELECT 1 FROM users WHERE email = $1)";
+  const sqlCheckUsername =
+    "SELECT EXISTS (SELECT 1 FROM users WHERE username = $1)";
+  const checkEmailResult = await pool.query(sqlCheckEmail, [email]);
+  const checkUsernameResult = await pool.query(sqlCheckUsername, [username]);
+  console.log(checkEmailResult.rows[0].exists);
+  console.log(checkUsernameResult.rows[0].exists);
+
+  return res.json({ message: "Test" });
 });
 
 app.listen(3001, () => {});
