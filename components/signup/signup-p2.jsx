@@ -1,6 +1,4 @@
-"use client";
-
-export default function SignupP2({ setPage }) {
+export default async function SignupP2({ setPage }) {
   return (
     <>
       <label className="input input-bordered flex items-center gap-2 mt-4 mb-4">

@@ -1,10 +1,9 @@
 "use client";
 
 import { signup } from "@/lib/actions";
-import { useState } from "react";
 
-export default function SignupP1({ setPage }) {
-  const [formData, setFormData] = useState({ email: null, username: null });
+export default function SignupP1({ setPage, formData, setFormData }) {
+  // const [formData, setFormData] = useState({ email: null, username: null });
   const { username, email } = formData;
 
   const handleInput = (e) => {
@@ -17,9 +16,18 @@ export default function SignupP1({ setPage }) {
     });
   };
 
-  const handleSignup = async (formInput) => {
-    const response = await signup(formInput);
-    const { emailExists, usernameExists } = response;
+  const validateEmail = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const handleSubmit = async (formInput) => {
+    if (!validateEmail()) {
+      alert("Invalid e-mail");
+      return;
+    }
+    const availabilityStatus = await signup(formInput);
+    const { emailExists, usernameExists } = availabilityStatus;
     if (emailExists || usernameExists) {
       alert("Username or email already taken.");
     } else {
@@ -29,7 +37,7 @@ export default function SignupP1({ setPage }) {
 
   return (
     <>
-      <form className="mt-4 w-72 self-center" action={handleSignup}>
+      <form className="mt-4 w-72 self-center" action={handleSubmit}>
         <label className="input input-bordered flex items-center gap-2 mt-4 mb-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"

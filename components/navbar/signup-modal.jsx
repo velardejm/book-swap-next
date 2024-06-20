@@ -6,6 +6,7 @@ import SignupP1 from "../signup/signup-p1";
 import SignupP2 from "../signup/signup-p2";
 
 export default function SignupModal() {
+  const [formData, setFormData] = useState({ email: null, username: null });
   const [page, setPage] = useState(1);
 
   return (
@@ -24,9 +25,9 @@ export default function SignupModal() {
           {/* Sign Up Form */}
 
           {page === 1 ? (
-            <SignupP1 setPage={setPage} />
+            <SignupP1 {...{ setPage, formData, setFormData }} />
           ) : (
-            <SignupP2 setPage={setPage} />
+            <SignupP2 setPage={setPage} formData={formData} />
           )}
 
           {/* <div className={`${page === 1 ? "" : "hidden"} flex flex-col`}>
