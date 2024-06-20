@@ -1,12 +1,10 @@
-// "use client";
-
-// import { useBookContext } from "../context";
-
 export default async function Books() {
-
-  const response = await fetch("http://localhost:8000/api", { cache: 'no-store' });
+  const response = await fetch("http://localhost:8000/api", {
+    cache: "no-store",
+  });
+  // console.log(response);
   const myBooks = await response.json();
-
+  // console.log(myBooks);
 
   return (
     <div>

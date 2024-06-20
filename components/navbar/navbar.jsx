@@ -1,6 +1,8 @@
 import Link from "next/link";
 import NavDropdown from "./nav-dropdown";
-import NavExpanded from "./nav-expanded";
+import LoginModal from "./login-modal";
+import SignupModal from "./signup-modal";
+import NavLinks from "./nav-links";
 
 export default function NavBar() {
   return (
@@ -14,8 +16,13 @@ export default function NavBar() {
       <div className="navbar-center hidden lg:flex"></div>
 
       <div className="navbar-end">
+        <LoginModal />
+        <SignupModal />
         <NavDropdown />
-        <NavExpanded />
+        
+        <ul className="menu menu-horizontal px-1 hidden lg:flex">
+          <NavLinks />
+        </ul>
       </div>
     </div>
   );

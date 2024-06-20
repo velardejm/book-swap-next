@@ -1,27 +1,27 @@
-"use client";
+// "use client";
 
-import { useState, useEffect, createContext, useContext } from "react";
+// import { useState, useEffect, createContext, useContext } from "react";
 
-export const MyContext = createContext();
+// export const MyContext = createContext();
 
-export const MyContextProvider = ({ children }) => {
-  const [books, setBooks] = useState([]);
+// export const MyContextProvider = ({ children }) => {
+//   const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    const getBooks = async () => {
-      const response = await fetch("/books.json");
-      const data = await response.json();
-      setBooks(data);
-    };
-    getBooks();
-  }, []);
+//   useEffect(() => {
+//     const getBooks = async () => {
+//       const response = await fetch("/books.json");
+//       const data = await response.json();
+//       setBooks(data);
+//     };
+//     getBooks();
+//   }, []);
 
-  return <MyContext.Provider value={books}>{children}</MyContext.Provider>;
-};
+//   return <MyContext.Provider value={books}>{children}</MyContext.Provider>;
+// };
 
-export const useBookContext = () => {
-  return useContext(MyContext);
-};
+// export const useBookContext = () => {
+//   return useContext(MyContext);
+// };
 
 // import { useState, useEffect, createContext } from 'react';
 
