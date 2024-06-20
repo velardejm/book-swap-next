@@ -1,11 +1,35 @@
 "use client";
 
 import { signup } from "@/lib/actions";
+import { useState } from "react";
 
 export default function SignupP1({ setPage }) {
+  const [formData, setFormData] = useState({ email: null, username: null });
+  const { username, email } = formData;
+
+  const handleInput = (e) => {
+    setFormData((prev) => {
+      const { name, value } = e.target;
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSignup = async (formInput) => {
+    const response = await signup(formInput);
+    const { emailExists, usernameExists } = response;
+    if (emailExists || usernameExists) {
+      alert("Username or email already taken.");
+    } else {
+      setPage(2);
+    }
+  };
+
   return (
     <>
-      <form className="mt-10 w-72 self-center" action={signup}>
+      <form className="mt-4 w-72 self-center" action={handleSignup}>
         <label className="input input-bordered flex items-center gap-2 mt-4 mb-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -21,6 +45,8 @@ export default function SignupP1({ setPage }) {
             className="grow"
             placeholder="Email"
             name="email"
+            value={formData.email}
+            onChange={handleInput}
           />
         </label>
 
@@ -38,15 +64,19 @@ export default function SignupP1({ setPage }) {
             className="grow"
             placeholder="Username"
             name="username"
+            value={formData.username}
+            onChange={handleInput}
           />
         </label>
 
         <button
-          className="btn btn-sm btn-ghost w-24 self-end mt-6"
+          className="btn btn-sm btn-outline w-24 self-end mt-6"
+          type="submit"
           onClick={() => {
             //   alert("test");
-            setPage(2);
+            // setPage(2);
           }}
+          disabled={username && email ? false : true}
         >
           Next
         </button>

@@ -50,10 +50,10 @@ app.post("/signup", async (req, res) => {
     "SELECT EXISTS (SELECT 1 FROM users WHERE username = $1)";
   const checkEmailResult = await pool.query(sqlCheckEmail, [email]);
   const checkUsernameResult = await pool.query(sqlCheckUsername, [username]);
-  console.log(checkEmailResult.rows[0].exists);
-  console.log(checkUsernameResult.rows[0].exists);
+  // console.log(checkEmailResult.rows[0].exists);
+  // console.log(checkUsernameResult.rows[0].exists);
 
-  return res.json({ message: "Test" });
+  return res.json({ emailExists: checkEmailResult.rows[0].exists, usernameExists: checkUsernameResult.rows[0].exists });
 });
 
-app.listen(3001, () => {});
+app.listen(3001, () => { });
