@@ -1,8 +1,21 @@
-// "use client";
+"use client";
 
-// import { useState, useEffect, createContext, useContext } from "react";
+import { useState, createContext, useContext } from "react";
 
-// export const MyContext = createContext();
+export const SignupContext = createContext();
+
+export const SignupContextProvider = ({ children }) => {
+    const [signUpDetails, setSignUpDetails] = useState({
+        email: "",
+        username: ""
+    });
+
+    return <SignupContext.Provider value={{ signUpDetails, setSignUpDetails }}>{children}</SignupContext.Provider>
+}
+
+export const useSignupContext = () => {
+    return useContext(SignupContext);
+};
 
 // export const MyContextProvider = ({ children }) => {
 //   const [books, setBooks] = useState([]);

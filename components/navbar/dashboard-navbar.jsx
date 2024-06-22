@@ -4,6 +4,8 @@ import { useRef } from "react";
 import Link from "next/link";
 import MenuButton from "./menu-button";
 
+import { logout } from "@/lib/auth";
+
 export default function DashboardNavbar() {
   const menuButtonRef = useRef(null);
   return (
@@ -25,7 +27,14 @@ export default function DashboardNavbar() {
         </div>
 
         <div className="navbar-end">
-          <button className="lg:btn lg:content-center mr-2">Log Out</button>
+          <button
+            className="lg:btn lg:content-center mr-2"
+            onClick={() => {
+              logout();
+            }}
+          >
+            Log Out
+          </button>
         </div>
       </div>
 
