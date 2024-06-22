@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { checkSession } from "./lib/lib";
+import { checkSession } from "./lib/auth";
 
 export async function middleware(request) {
   const session = await checkSession();
@@ -12,5 +12,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: "/books",
+  matcher: "/dashboard",
 };

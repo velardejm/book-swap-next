@@ -2,18 +2,32 @@
 
 import { handleLogin } from "@/lib/actions";
 import { useState } from "react";
+import { useFormStatus } from "react-dom";
 
 import Alert from "../common/alert";
 
 export default function LoginModal() {
   const [errorMessage, setErrorMessage] = useState(null);
-  const [loginAttempts, setLoginAttempts] = useState(0);
 
   const loginAction = async (formData) => {
     const response = handleLogin(formData);
     const responseData = await response;
     console.log(responseData);
     setErrorMessage(responseData);
+  };
+
+  const SubmitButton = () => {
+    const { pending } = useFormStatus();
+
+    return (
+      <button
+        className="btn btn-secondary block mx-auto mt-8 px-8"
+        disabled={pending}
+        type="submit"
+      >
+        Log In
+      </button>
+    );
   };
 
   return (
@@ -45,6 +59,7 @@ export default function LoginModal() {
                 className="grow"
                 placeholder="Username"
                 name="username"
+                autoFocus="true"
               />
             </label>
 
@@ -68,10 +83,7 @@ export default function LoginModal() {
                 name="password"
               />
             </label>
-
-            <button className="btn btn-secondary block mx-auto mt-8 px-8">
-              Log In
-            </button>
+            <SubmitButton />
           </form>
           {errorMessage && <Alert message={errorMessage} />}
         </div>
