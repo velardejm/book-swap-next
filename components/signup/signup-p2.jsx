@@ -1,13 +1,26 @@
 "use client";
 
 import { signup2 } from "@/lib/actions";
+import Alert from "../common/alert";
+import { useState } from "react";
 
 export default function SignupP2({ setPage, formData }) {
   const signupWithP1Data = signup2.bind(null, formData);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (page1Data, formData) => {
+    const isSignupSuccessful = await signupWithP1Data(page1Data, formData);
+    if (isSignupSuccessful) {
+      alert("Signed up successfully");
+      // redirect to dashboard
+    } else {
+      setError("Passwords doesn't match");
+    }
+  };
 
   return (
     <>
-      <form className="mt-4 w-72 self-center" action={signupWithP1Data}>
+      <form className="mt-4 w-72 self-center" action={handleSubmit}>
         <label className="input input-bordered flex items-center gap-2 mt-4 mb-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +34,13 @@ export default function SignupP2({ setPage, formData }) {
               clipRule="evenodd"
             />
           </svg>
-          <input type="password" className="grow" placeholder="Password" />
+          <input
+            type="password"
+            className="grow"
+            placeholder="Password"
+            name="password"
+            autoFocus="true"
+          />
         </label>
 
         <label className="input input-bordered flex items-center gap-2 mb-8">
@@ -40,7 +59,8 @@ export default function SignupP2({ setPage, formData }) {
           <input
             type="password"
             className="grow"
-            placeholder="Validate Password"
+            placeholder="Verify Password"
+            name="password-verification"
           />
         </label>
 
@@ -48,6 +68,7 @@ export default function SignupP2({ setPage, formData }) {
           <button
             className="btn btn-sm btn-ghosts w-24 self-end"
             onClick={() => setPage(1)}
+            type="button"
           >
             Back
           </button>
@@ -61,6 +82,7 @@ export default function SignupP2({ setPage, formData }) {
           </button>
         </div>
       </form>
+      {error && <Alert message={error} />}
     </>
   );
 }

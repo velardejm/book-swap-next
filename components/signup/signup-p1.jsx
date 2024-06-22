@@ -3,8 +3,12 @@
 import { signup1 } from "@/lib/actions";
 import Link from "next/link";
 
+import Alert from "../common/alert";
+import { useState } from "react";
+
 export default function SignupP1({ setPage, formData, setFormData }) {
   const { username, email } = formData;
+  const [error, setError] = useState(null);
 
   const handleInput = (e) => {
     setFormData((prev) => {
@@ -22,15 +26,17 @@ export default function SignupP1({ setPage, formData, setFormData }) {
     return regex.test(email);
   };
 
-  const submitAction = async (formInput) => {
+  const handleSubmit = async (formInput) => {
     if (!validateEmail()) {
-      alert("Invalid e-mail");
+      // alert("Invalid e-mail");
+      setError("Invalid email");
       return;
     }
     const availabilityStatus = await signup1(formInput);
     const { emailExists, usernameExists } = availabilityStatus;
     if (emailExists || usernameExists) {
-      alert("Username or email already taken.");
+      // alert("Username or email already taken.");
+      setError("Username or email already taken")
     } else {
       setPage(2);
     }
@@ -38,7 +44,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
 
   return (
     <>
-      <form className="mt-4 w-72 self-center" action={submitAction}>
+      <form className="mt-4 w-72 self-center" action={handleSubmit}>
         <label className="input input-bordered flex items-center gap-2 mt-4 mb-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +63,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
             // value={signUpDetails.email}
             value={email}
             onChange={handleInput}
+            autoFocus="true"
           />
         </label>
 
@@ -94,6 +101,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
 
         <Link href="/signup/p2">To Page 2</Link>
       </form>
+      {error && <Alert message={error} />}
     </>
   );
 }
