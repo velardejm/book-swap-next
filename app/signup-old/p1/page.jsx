@@ -11,6 +11,11 @@ export default function SignupPage1() {
   const [page, setPage] = useState(1);
 
   const { signUpDetails, setSignUpDetails } = useSignupContext();
+  console.log(signUpDetails);
+
+  if (!signUpDetails) {
+    return null;
+  }
 
   return (
     <>

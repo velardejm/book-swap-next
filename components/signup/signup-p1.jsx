@@ -1,21 +1,20 @@
 "use client";
 
-import { signup } from "@/lib/actions";
+import { signup1 } from "@/lib/actions";
 import Link from "next/link";
 
-export default function SignupP1({ setPage, signUpDetails, setSignUpDetails }) {
-  // const [formData, setFormData] = useState({ email: null, username: null });
-  const { username, email } = signUpDetails;
+export default function SignupP1({ setPage, formData, setFormData }) {
+  const { username, email } = formData;
 
   const handleInput = (e) => {
-    setSignUpDetails((prev) => {
+    setFormData((prev) => {
       const { name, value } = e.target;
       return {
         ...prev,
         [name]: value,
       };
     });
-    console.log(signUpDetails);
+    // console.log(signUpDetails);
   };
 
   const validateEmail = () => {
@@ -23,12 +22,12 @@ export default function SignupP1({ setPage, signUpDetails, setSignUpDetails }) {
     return regex.test(email);
   };
 
-  const handleSubmit = async (formInput) => {
+  const submitAction = async (formInput) => {
     if (!validateEmail()) {
       alert("Invalid e-mail");
       return;
     }
-    const availabilityStatus = await signup(formInput);
+    const availabilityStatus = await signup1(formInput);
     const { emailExists, usernameExists } = availabilityStatus;
     if (emailExists || usernameExists) {
       alert("Username or email already taken.");
@@ -39,7 +38,7 @@ export default function SignupP1({ setPage, signUpDetails, setSignUpDetails }) {
 
   return (
     <>
-      <form className="mt-4 w-72 self-center" action={handleSubmit}>
+      <form className="mt-4 w-72 self-center" action={submitAction}>
         <label className="input input-bordered flex items-center gap-2 mt-4 mb-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +54,8 @@ export default function SignupP1({ setPage, signUpDetails, setSignUpDetails }) {
             className="grow"
             placeholder="Email"
             name="email"
-            value={signUpDetails.email}
+            // value={signUpDetails.email}
+            value={email}
             onChange={handleInput}
           />
         </label>
@@ -74,7 +74,8 @@ export default function SignupP1({ setPage, signUpDetails, setSignUpDetails }) {
             className="grow"
             placeholder="Username"
             name="username"
-            value={signUpDetails.username}
+            // value={signUpDetails.username}
+            value={username}
             onChange={handleInput}
           />
         </label>
