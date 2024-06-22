@@ -1,9 +1,10 @@
+import AddBook from "@/components/dashboard/add-book";
 import BookCard from "@/components/dashboard/book-card";
 import DeleteBookModal from "@/components/dashboard/delete-book-modal";
 
 export default async function MyBooks() {
   const response = await fetch("http://localhost:8000/api", {
-    cache: "no-store",
+    next: { tags: ["mybooks"] },
   });
   let myBooks = await response.json();
   let toDeleteId = null;
@@ -38,6 +39,7 @@ export default async function MyBooks() {
           <tfoot></tfoot>
         </table>
       </div>
+      <AddBook />
       <DeleteBookModal />
     </>
   );
