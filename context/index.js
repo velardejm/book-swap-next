@@ -1,27 +1,40 @@
 "use client";
 
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, createContext, useContext } from "react";
 
-export const MyContext = createContext();
+export const SignupContext = createContext();
 
-export const MyContextProvider = ({ children }) => {
-  const [books, setBooks] = useState([]);
+export const SignupContextProvider = ({ children }) => {
+    const [signUpDetails, setSignUpDetails] = useState({
+        email: "",
+        username: ""
+    });
 
-  useEffect(() => {
-    const getBooks = async () => {
-      const response = await fetch("/books.json");
-      const data = await response.json();
-      setBooks(data);
-    };
-    getBooks();
-  }, []);
+    return <SignupContext.Provider value={{ signUpDetails, setSignUpDetails }}>{children}</SignupContext.Provider>
+}
 
-  return <MyContext.Provider value={books}>{children}</MyContext.Provider>;
+export const useSignupContext = () => {
+    return useContext(SignupContext);
 };
 
-export const useBookContext = () => {
-  return useContext(MyContext);
-};
+// export const MyContextProvider = ({ children }) => {
+//   const [books, setBooks] = useState([]);
+
+//   useEffect(() => {
+//     const getBooks = async () => {
+//       const response = await fetch("/books.json");
+//       const data = await response.json();
+//       setBooks(data);
+//     };
+//     getBooks();
+//   }, []);
+
+//   return <MyContext.Provider value={books}>{children}</MyContext.Provider>;
+// };
+
+// export const useBookContext = () => {
+//   return useContext(MyContext);
+// };
 
 // import { useState, useEffect, createContext } from 'react';
 
