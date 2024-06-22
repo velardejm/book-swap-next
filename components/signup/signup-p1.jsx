@@ -1,19 +1,21 @@
 "use client";
 
 import { signup } from "@/lib/actions";
+import Link from "next/link";
 
-export default function SignupP1({ setPage, formData, setFormData }) {
+export default function SignupP1({ setPage, signUpDetails, setSignUpDetails }) {
   // const [formData, setFormData] = useState({ email: null, username: null });
-  const { username, email } = formData;
+  const { username, email } = signUpDetails;
 
   const handleInput = (e) => {
-    setFormData((prev) => {
+    setSignUpDetails((prev) => {
       const { name, value } = e.target;
       return {
         ...prev,
         [name]: value,
       };
     });
+    console.log(signUpDetails);
   };
 
   const validateEmail = () => {
@@ -53,7 +55,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
             className="grow"
             placeholder="Email"
             name="email"
-            value={formData.email}
+            value={signUpDetails.email}
             onChange={handleInput}
           />
         </label>
@@ -72,7 +74,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
             className="grow"
             placeholder="Username"
             name="username"
-            value={formData.username}
+            value={signUpDetails.username}
             onChange={handleInput}
           />
         </label>
@@ -88,6 +90,8 @@ export default function SignupP1({ setPage, formData, setFormData }) {
         >
           Next
         </button>
+
+        <Link href="/signup/p2">To Page 2</Link>
       </form>
     </>
   );
