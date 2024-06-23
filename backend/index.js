@@ -15,9 +15,11 @@ app.get("/test", (req, res) => {
   res.json({ name: "Test" });
 });
 
-app.get("/mybooks", async (req, res) => {
+app.get("/dashboard/mybooks", async (req, res) => {
   const sqlGetAllBooks = "SELECT * FROM books";
   const books = await pool.query(sqlGetAllBooks);
+  res.statusCode = 200;
+  // console.log(books.rows);
   res.json(books.rows);
 });
 
@@ -55,5 +57,14 @@ app.post("/signup", async (req, res) => {
 
   return res.json({ emailExists: checkEmailResult.rows[0].exists, usernameExists: checkUsernameResult.rows[0].exists });
 });
+
+app.post("/updatebook", async (req, res) => {
+  const { id, title } = req.body;
+  const sqlUpdateBook = "UPDATE books SET title = $1 WHERE id = $2";
+  const queryResult = await pool.query(sqlUpdateBook, [title, id]);
+  console.log('Book was updated');
+  // console.log(queryResult.rows);
+  return res.json({ message: "Ok" })
+})
 
 app.listen(3001, () => { });

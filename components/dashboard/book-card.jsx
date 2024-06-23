@@ -1,6 +1,6 @@
 "use client";
 
-export default function BookCard({ book, deleteBook }) {
+export default function BookCard({ book, openEdit, closeEdit, setSelectedBook }) {
   const { title, author, genre, owner_id, condition } = book;
 
   return (
@@ -16,6 +16,10 @@ export default function BookCard({ book, deleteBook }) {
             src="edit-icon.svg"
             alt="edit"
             className="mr-4 hover:cursor-pointer"
+            onClick={() => {
+              setSelectedBook(book);
+              openEdit();
+            }}
           />
           <img
             src="delete-icon.svg"
