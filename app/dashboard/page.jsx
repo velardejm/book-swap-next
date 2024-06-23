@@ -1,6 +1,7 @@
-import AddBook from "@/components/dashboard/add-book";
 import MyBooksTable from "@/components/dashboard/my-books-table";
 import DeleteBookModal from "@/components/dashboard/delete-book-modal";
+
+import AddBook from "@/components/dashboard/add-book";
 
 export default async function MyBooks() {
   // const response = await fetch("http://localhost:8000/api", {
@@ -25,8 +26,8 @@ export default async function MyBooks() {
       <div className="overflow-x-auto mx-10">
         <MyBooksTable myBooks={myBooks} />
       </div>
-      <AddBook />
       <DeleteBookModal />
+      <AddBook />
     </>
   );
 }
