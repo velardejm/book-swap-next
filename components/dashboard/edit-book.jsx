@@ -1,29 +1,31 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { addBook } from "@/lib/actions";
+import { updateBook } from "@/lib/actions";
 
-const SubmitButton = () => {
-  return (
-    <button className="btn btn-secondary block mx-auto mt-8 px-8" type="submit">
-      Log In
-    </button>
-  );
-};
-
-export default function EditBook({ selectedBook }) {
+export default function EditBook({ selectedBook, closeEdit }) {
   const { title, id } = selectedBook;
   const [bookTitle, setBookTitle] = useState(title);
+  const updateBookWithId = updateBook.bind(null, id);
 
-  const addBookWithId = addBook.bind(null, id)
+  useEffect(() => {
+    setBookTitle(selectedBook.title);
+  }, [selectedBook]);
 
   const handleChange = (e) => {
     setBookTitle(e.target.value);
   };
 
+  const handleSubmit = async (id, formData) => {
+    const updateActionResult = await updateBookWithId(id, formData);
+    if (updateActionResult) {
+      closeEdit();
+    }
+  };
+
   return (
     <>
-      <form action={addBookWithId}>
+      <form action={handleSubmit}>
         <label className="input input-bordered flex items-center gap-2 mb-4">
           <input
             type="text"
@@ -35,7 +37,12 @@ export default function EditBook({ selectedBook }) {
             onChange={handleChange}
           />
         </label>
-        <SubmitButton />
+        <button
+          className="btn btn-secondary block mx-auto mt-8 px-8"
+          type="submit"
+        >
+          Update
+        </button>
       </form>
     </>
   );

@@ -1,6 +1,12 @@
 "use client";
 
-export default function BookCard({ book, openEdit, closeEdit, setSelectedBook }) {
+export default function BookCard({
+  book,
+  openEdit,
+  closeEdit,
+  setSelectedBook,
+  selectedBook,
+}) {
   const { title, author, genre, owner_id, condition } = book;
 
   return (

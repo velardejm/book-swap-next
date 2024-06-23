@@ -9,9 +9,6 @@ const LazyEditBook = lazy(() => import("./edit-book"));
 export default function MyBooksTable({ myBooks }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
-   
-
-  
 
   const closeEdit = () => {
     setIsEditOpen(false);
@@ -45,7 +42,7 @@ export default function MyBooksTable({ myBooks }) {
             return (
               <BookCard
                 key={index}
-                {...{ book, openEdit, closeEdit, setSelectedBook }}
+                {...{ book, openEdit, closeEdit, setSelectedBook, selectedBook }}
               />
             );
           })}
@@ -55,12 +52,12 @@ export default function MyBooksTable({ myBooks }) {
       </table>
 
       {isEditOpen && (
-        <Suspense fallback={<p>Loading...</p>}>
-          <LazyEditBook
+        // <Suspense fallback={<p>Loading...</p>}>
+          <EditBook
             selectedBook={selectedBook}
-            setIsEditOpen={setIsEditOpen}
+            closeEdit={closeEdit}
           />
-        </Suspense>
+        // </Suspense>
       )}
     </>
   );
