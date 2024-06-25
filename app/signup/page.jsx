@@ -6,7 +6,7 @@ import SignupP1 from "@/components/signup/signup-p1";
 import SignupP2 from "@/components/signup/signup-p2";
 
 export default function SignupPage1() {
-  const [formData, setFormData] = useState({ email: "", username: "" });
+  const [formData, setFormData] = useState({ email: "", username: "", name: "" });
   const [page, setPage] = useState(1);
 
   return (

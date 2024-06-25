@@ -3,11 +3,13 @@
 import { useState, lazy, Suspense } from "react";
 import BookCard from "./book-card";
 import EditBook from "./edit-book";
+import AddBook from "./add-book";
 
 const LazyEditBook = lazy(() => import("./edit-book"));
 
 export default function MyBooksTable({ myBooks }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isAddBookOpen, setIsAddBookOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
   const closeEdit = () => {
@@ -42,7 +44,13 @@ export default function MyBooksTable({ myBooks }) {
             return (
               <BookCard
                 key={index}
-                {...{ book, openEdit, closeEdit, setSelectedBook, selectedBook }}
+                {...{
+                  book,
+                  openEdit,
+                  closeEdit,
+                  setSelectedBook,
+                  selectedBook,
+                }}
               />
             );
           })}
@@ -53,12 +61,11 @@ export default function MyBooksTable({ myBooks }) {
 
       {isEditOpen && (
         // <Suspense fallback={<p>Loading...</p>}>
-          <EditBook
-            selectedBook={selectedBook}
-            closeEdit={closeEdit}
-          />
+        <EditBook selectedBook={selectedBook} closeEdit={closeEdit} />
         // </Suspense>
       )}
+
+      {isAddBookOpen && <AddBook />}
     </>
   );
 }

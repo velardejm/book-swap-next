@@ -1,8 +1,6 @@
 import MyBooksTable from "@/components/dashboard/my-books-table";
 import DeleteBookModal from "@/components/dashboard/delete-book-modal";
 
-import AddBook from "@/components/dashboard/add-book";
-
 export default async function MyBooks() {
   // const response = await fetch("http://localhost:8000/api", {
   //   next: { tags: ["mybooks"] },
@@ -27,7 +25,6 @@ export default async function MyBooks() {
         <MyBooksTable myBooks={myBooks} />
       </div>
       <DeleteBookModal />
-      <AddBook />
     </>
   );
 }
