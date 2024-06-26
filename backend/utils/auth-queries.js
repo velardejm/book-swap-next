@@ -24,19 +24,19 @@ export async function queryGetUserDetails(username) {
 }
 
 
-// export async function queryCheckSignupAvailability(email, username) {
-//     const queryFunction = async (email, username) => {
-//         const queryStringCheckEmail =
-//             "SELECT EXISTS (SELECT 1 FROM users WHERE email = $1)";
-//         const queryStringCheckUsername =
-//             "SELECT EXISTS (SELECT 1 FROM users WHERE username = $1)";
-//         const checkEmailResult = await pool.query(queryStringCheckEmail, [email]);
-//         const checkUsernameResult = await pool.query(queryStringCheckUsername, [username]);
-//         const queryData = { emailExists: checkEmailResult.rows[0].exists, usernameExists: checkUsernameResult.rows[0].exists };
-//         return queryData;
-//     }
-//     return await handlelQuery(queryFunction, email, username);
-// }
+export async function queryCheckSignupAvailability(email, username) {
+    const queryFunction = async (email, username) => {
+        const queryStringCheckEmail =
+            "SELECT EXISTS (SELECT 1 FROM users WHERE email = $1)";
+        const queryStringCheckUsername =
+            "SELECT EXISTS (SELECT 1 FROM users WHERE username = $1)";
+        const checkEmailResult = await pool.query(queryStringCheckEmail, [email]);
+        const checkUsernameResult = await pool.query(queryStringCheckUsername, [username]);
+        const queryData = { emailExists: checkEmailResult.rows[0].exists, usernameExists: checkUsernameResult.rows[0].exists };
+        return queryData;
+    }
+    return await handlelQuery(queryFunction, email, username);
+}
 
 
 
@@ -45,22 +45,22 @@ export async function queryGetUserDetails(username) {
 
 
 
-export async function queryCheckSignupAvailability(email, username) {
-    const sqlCheckEmail =
-        "SELECT EXISTS (SELECT 1 FROM users WHERE email = $1)";
-    const sqlCheckUsername =
-        "SELECT EXISTS (SELECT 1 FROM users WHERE username = $1)";
+// export async function queryCheckSignupAvailability(email, username) {
+//    t sqlCheckEmail =
+//         "SELECT EXISTS (SELECT 1 FROM users WHERE email = $1)";
+//     const sqlCheckUsername =
+//         "SELECT EXISTS (SELECT 1 FROM users WHERE username = $1)";
 
 
-    try {
-        const checkEmailResult = await pool.query(sqlCheckEmail, [email]);
-        const checkUsernameResult = await pool.query(sqlCheckUsername, [username]);
-        const queryData = { emailExists: checkEmailResult.rows[0].exists, usernameExists: checkUsernameResult.rows[0].exists };
-        return { success: true, data: queryData }
-    } catch (error) {
-        return { success: false, error: error.message }
-    }
-}
+//     try {
+//         const checkEmailResult = await pool.query(sqlCheckEmail, [email]);
+//         const checkUsernameResult = await pool.query(sqlCheckUsername, [username]);
+//         const queryData = { emailExists: checkEmailResult.rows[0].exists, usernameExists: checkUsernameResult.rows[0].exists };
+//         return { success: true, data: queryData }
+//     } catch (error) {
+//         return { success: false, error: error.message }
+//     }
+// }
 
 
 
