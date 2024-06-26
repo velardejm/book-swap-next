@@ -21,7 +21,6 @@ authRouter.post("/login", async (req, res) => {
   if (await bcrypt.compare(password, result.data.password)) {
     res.statusCode = 200;
     return res.json({ message: "Login successful" });
-    // return res.json({ username: foundUser.username, userId: foundUser.id });
   } else {
     res.statusCode = 401;
     return res.json({ message: "Incorrect password" });
@@ -34,7 +33,9 @@ authRouter.post("/signup/p1", async (req, res) => {
     email,
     username
   );
-  return res.json(signupAvailabilityStatus);
+  console.log(signupAvailabilityStatus);
+  // return res.json(signupAvailabilityStatus);
+  return res.json({ test: "Test" });
 });
 
 authRouter.post("/signup/p2", async (req, res) => {
