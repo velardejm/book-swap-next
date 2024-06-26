@@ -1,6 +1,9 @@
 import express from "express";
 import bcrypt from "bcrypt";
 
+import { querySignup, queryCheckSignupAvailability, queryGetUserDetails } from "../utils/auth-queries.js";
+
+
 const authRouter = express.Router();
 
 authRouter.post("/login", async (req, res) => {
@@ -44,8 +47,22 @@ authRouter.post("/signup/p2", async (req, res) => {
     email,
     username
   );
-  const hashedPassword = await bcrypt.hash(password, 10);
-  return res.json(signupAvailabilityStatus);
+
+  if (signupAvailabilityStatus.success) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const result = await querySignup(username, hashedPassword, name, email);
+
+    if (result.success) {
+      return res.json({ success: true, message: "Registration successful.", hashedPassword: hashedPassword });
+    } else {
+      return res.json({ success: false, message: "Registration failed. Please try again later.", hashedPassword: null });
+    }
+
+  } else {
+    return res.json({ success: false, message: "Username or email is not available.", hashedPassword: null });
+  }
+
+
 });
 
 export default authRouter;

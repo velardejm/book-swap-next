@@ -3,9 +3,12 @@ import { pool } from "../db.js";
 
 async function handlelQuery(query, ...queryParams) {
     try {
+        pool.query("BEGIN");
         const result = await query(...queryParams)
+        pool.query("COMMIT");
         return { success: true, data: result }
     } catch (error) {
+        pool.query("ROLLBACK");
         return { success: false, error: error.message }
     }
 }
@@ -36,6 +39,22 @@ export async function queryCheckSignupAvailability(email, username) {
         return queryData;
     }
     return await handlelQuery(queryFunction, email, username);
+}
+
+
+export async function querySignup(username, password, name, email) {
+    const queryFunction = async (username, password, name, email) => {
+        const queryStringInsertUser =
+            "INSERT INTO Users (username, email, password) VALUES ($1, $2, $3) RETURNING id";
+        const queryStringInsertUserInfo =
+            "INSERT INTO UsersInfo (id, name, email, user_id) VALUES ($1, $2, $3, $4)";
+
+        const newUser = await pool.query(queryStringInsertUser, [username, email, password]);
+        const result = await pool.query(queryStringInsertUserInfo, [newUser.rows[0].id, name, email, newUser.rows[0].id]);
+
+        return { message: "Registration successful" };
+    }
+    return await handlelQuery(queryFunction, username, password, name, email);
 }
 
 
