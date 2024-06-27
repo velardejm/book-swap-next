@@ -2,10 +2,6 @@ import MyBooksTable from "@/components/dashboard/my-books-table";
 import DeleteBookModal from "@/components/dashboard/delete-book-modal";
 
 export default async function MyBooks() {
-  // const response = await fetch("http://localhost:8000/api", {
-  //   next: { tags: ["mybooks"] },
-  // });
-
   const response = await fetch("http://localhost:3001/dashboard/mybooks", {
     next: { tags: ["mybooks"] },
   });
