@@ -6,13 +6,14 @@ import { useFormStatus } from "react-dom";
 
 import Alert from "../common/alert";
 
-const SubmitButton = () => {
+const SubmitButton = ({ formInput }) => {
   const { pending } = useFormStatus();
+  const { username, password } = formInput;
 
   return (
     <button
       className="btn btn-secondary block mx-auto mt-8 px-8"
-      disabled={pending}
+      disabled={!(username && password) || pending}
       type="submit"
     >
       Log In
@@ -22,11 +23,25 @@ const SubmitButton = () => {
 
 export default function LoginModal() {
   const [errorMessage, setErrorMessage] = useState(null);
-
+  const [formInput, setFormInput] = useState({
+    username: null,
+    password: null,
+  });
+  const { username, password } = formInput;
   const loginAction = async (formData) => {
     const response = await handleLogin(formData);
     // const responseData = await response;
     setErrorMessage(response);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormInput((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   return (
@@ -59,6 +74,8 @@ export default function LoginModal() {
                 placeholder="Username"
                 name="username"
                 autoFocus="true"
+                onChange={handleChange}
+                value={username}
               />
             </label>
 
@@ -80,9 +97,11 @@ export default function LoginModal() {
                 className="grow"
                 placeholder="Password"
                 name="password"
+                onChange={handleChange}
+                value={password}
               />
             </label>
-            <SubmitButton />
+            <SubmitButton formInput={formInput} />
           </form>
           {errorMessage && <Alert message={errorMessage} />}
         </div>

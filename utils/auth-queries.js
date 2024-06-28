@@ -2,6 +2,7 @@ import { pool } from "@/app/api/db";
 import { handlelQuery } from "./query-helpers.js";
 
 export async function queryGetUserDetails(username) {
+    // console.log(username);
     const queryFunction = async (username) => {
         const queryString = "SELECT * FROM users WHERE username=$1";
         const queryResult = await pool.query(queryString, [username]);
