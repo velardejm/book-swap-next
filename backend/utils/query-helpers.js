@@ -1,3 +1,5 @@
+import { pool } from "../db.js";
+
 export async function handlelQuery(query, ...queryParams) {
     try {
         pool.query("BEGIN");
