@@ -2,7 +2,7 @@
 import { useRef } from "react";
 
 import Link from "next/link";
-import MenuButton from "./menu-button";
+import MenuButton from "../navbar/menu-button";
 
 import { logout } from "@/lib/auth";
 

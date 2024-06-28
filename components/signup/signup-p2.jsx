@@ -8,8 +8,8 @@ export default function SignupP2({ setPage, formData }) {
   const signupWithP1Data = signup2.bind(null, formData);
   const [error, setError] = useState(null);
 
-  const handleSubmit = async (page1Data, formData) => {
-    const isSignupSuccessful = await signupWithP1Data(page1Data, formData);
+  const handleSubmit = async (page1Data, page2Data) => {
+    const isSignupSuccessful = await signupWithP1Data(page1Data, page2Data);
     if (isSignupSuccessful) {
       alert("Signed up successfully");
       // redirect to dashboard

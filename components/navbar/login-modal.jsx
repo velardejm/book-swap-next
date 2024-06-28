@@ -6,28 +6,27 @@ import { useFormStatus } from "react-dom";
 
 import Alert from "../common/alert";
 
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      className="btn btn-secondary block mx-auto mt-8 px-8"
+      disabled={pending}
+      type="submit"
+    >
+      Log In
+    </button>
+  );
+};
+
 export default function LoginModal() {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const loginAction = async (formData) => {
-    const response = handleLogin(formData);
-    const responseData = await response;
-    console.log(responseData);
-    setErrorMessage(responseData);
-  };
-
-  const SubmitButton = () => {
-    const { pending } = useFormStatus();
-
-    return (
-      <button
-        className="btn btn-secondary block mx-auto mt-8 px-8"
-        disabled={pending}
-        type="submit"
-      >
-        Log In
-      </button>
-    );
+    const response = await handleLogin(formData);
+    // const responseData = await response;
+    setErrorMessage(response);
   };
 
   return (

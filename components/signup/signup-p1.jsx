@@ -7,7 +7,7 @@ import Alert from "../common/alert";
 import { useState } from "react";
 
 export default function SignupP1({ setPage, formData, setFormData }) {
-  const { username, email } = formData;
+  const { username, email, name } = formData;
   const [error, setError] = useState(null);
 
   const handleInput = (e) => {
@@ -60,14 +60,13 @@ export default function SignupP1({ setPage, formData, setFormData }) {
             className="grow"
             placeholder="Email"
             name="email"
-            // value={signUpDetails.email}
             value={email}
             onChange={handleInput}
             autoFocus="true"
           />
         </label>
 
-        <label className="input input-bordered flex items-center gap-2 mb-8">
+        <label className="input input-bordered flex items-center gap-2 mb-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -81,8 +80,18 @@ export default function SignupP1({ setPage, formData, setFormData }) {
             className="grow"
             placeholder="Username"
             name="username"
-            // value={signUpDetails.username}
             value={username}
+            onChange={handleInput}
+          />
+        </label>
+
+        <label className="input input-bordered flex items-center gap-2 mb-8">
+          <input
+            type="text"
+            className="grow"
+            placeholder="Name"
+            name="name"
+            value={name}
             onChange={handleInput}
           />
         </label>
@@ -94,7 +103,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
             //   alert("test");
             // setPage(2);
           }}
-          disabled={username && email ? false : true}
+          disabled={username && email && name ? false : true}
         >
           Next
         </button>
