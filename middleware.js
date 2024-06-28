@@ -11,6 +11,6 @@ export async function middleware(request) {
   // } else NextResponse.redirect(new URL("/", request.url));
 }
 
-export const config = {
-  matcher: "/dashboard",
-};
+// export const config = {
+//   matcher: "/dashboard",
+// };
