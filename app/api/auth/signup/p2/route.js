@@ -1,7 +1,12 @@
+import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
-import { queryCheckSignupAvailability } from "@/utils/auth-queries";
+import {
+  queryCheckSignupAvailability,
+  querySignup,
+} from "@/utils/auth-queries";
 
 export async function POST(req) {
+  console.log("Signup Page 2");
   // GET REQUEST DATA
   const { email, username, name, password } = await req.json();
   // PROCESS QUERY RESULTS
