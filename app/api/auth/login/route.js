@@ -16,7 +16,7 @@ export async function POST(req) {
   }
   if (await bcrypt.compare(password, result.data.password)) {
     return NextResponse.json({
-      message: "Login successful",
+      data: result.data.id,
       status: 200,
     });
   } else {

@@ -6,7 +6,6 @@ import { headers } from "next/headers";
 
 export default async function MyBooks() {
   const session = cookies().get("session")?.value;
-  console.log(session);
   const response = await fetch("http://localhost:8000/api/dashboard/mybooks", {
     next: { tags: ["mybooks"] },
     headers: {Authorization: `Bearer ${session}`},

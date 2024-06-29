@@ -12,7 +12,6 @@ export default function LogIn() {
   const loginAction = async (formData) => {
     const response = handleLogin(formData);
     const responseData = await response;
-    console.log(responseData);
     setErrorMessage(responseData);
   };
 

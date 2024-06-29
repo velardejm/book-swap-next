@@ -61,7 +61,6 @@ exports.queryGetSwapRequest = async function (id) {
 exports.queryGetSwapRequests = async function (user_id) {
   const sqlGetData = `SELECT * FROM swaprequests WHERE requester_id=$1 AND status=$2`;
   const result = await pool.query(sqlGetData, [user_id, "pending"]);
-  console.log(result.rows);
   return result.rows;
 };
 
@@ -83,7 +82,6 @@ exports.querySwapBook = async function (
     await pool.query(sqlUpdateBookOwner, [requesteeId, offerredBookId]);
     await pool.query("COMMIT");
   } catch (err) {
-    console.log(err);
     pool.query("ROLLBACK");
   }
 };
