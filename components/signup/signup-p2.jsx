@@ -3,6 +3,7 @@
 import { signup2 } from "@/lib/actions";
 import Alert from "../common/alert";
 import { useState } from "react";
+import SubmitButton from "../common/submit-button";
 
 export default function SignupP2({ setPage, formData }) {
   const signupWithP1Data = signup2.bind(null, formData);
@@ -40,6 +41,7 @@ export default function SignupP2({ setPage, formData }) {
             placeholder="Password"
             name="password"
             autoFocus="true"
+            required
           />
         </label>
 
@@ -61,6 +63,7 @@ export default function SignupP2({ setPage, formData }) {
             className="grow"
             placeholder="Verify Password"
             name="password-verification"
+            required
           />
         </label>
 
@@ -72,14 +75,14 @@ export default function SignupP2({ setPage, formData }) {
           >
             Back
           </button>
-
-          <button
+          {/* <button
             className="btn btn-sm btn-secondary w-24 self-end"
             // onClick={() => setPage(2)}
             type="submit"
           >
-            Next
-          </button>
+            Sign Up
+          </button> */}
+          <SubmitButton label={"Sign Up"} twclasses="btn btn-sm btn-secondary w-24 self-end" type="submit"/>
         </div>
       </form>
       {error && <Alert message={error} />}

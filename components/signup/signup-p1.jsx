@@ -2,9 +2,9 @@
 
 import { signup1 } from "@/lib/actions";
 import Link from "next/link";
-
 import Alert from "../common/alert";
 import { useState } from "react";
+import SubmitButton from "../common/submit-button";
 
 export default function SignupP1({ setPage, formData, setFormData }) {
   const { username, email, name } = formData;
@@ -36,7 +36,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
     const { emailExists, usernameExists } = availabilityStatus;
     if (emailExists || usernameExists) {
       // alert("Username or email already taken.");
-      setError("Username or email already taken")
+      setError("Username or email already taken");
     } else {
       setPage(2);
     }
@@ -63,6 +63,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
             value={email}
             onChange={handleInput}
             autoFocus="true"
+            required
           />
         </label>
 
@@ -82,6 +83,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
             name="username"
             value={username}
             onChange={handleInput}
+            required
           />
         </label>
 
@@ -93,10 +95,10 @@ export default function SignupP1({ setPage, formData, setFormData }) {
             name="name"
             value={name}
             onChange={handleInput}
+            required
           />
         </label>
-
-        <button
+        {/* <button
           className="btn btn-sm btn-outline w-24 self-end mt-6"
           type="submit"
           onClick={() => {
@@ -106,7 +108,9 @@ export default function SignupP1({ setPage, formData, setFormData }) {
           disabled={username && email && name ? false : true}
         >
           Next
-        </button>
+        </button> */}
+
+        <SubmitButton label={"Next"} twclasses="btn btn-sm btn-outline w-24 self-end mt-6" type="submit"/>
 
         <Link href="/signup/p2">To Page 2</Link>
       </form>
