@@ -14,6 +14,9 @@ export async function GET() {
     const key = new TextEncoder().encode("SECRET");
     const { payload } = await jwtVerify(token, key);
     const result = await queryGetMyBooks(payload.userId);
-    console.log(result);
-    return NextResponse.json({ test: "Test" })
+    if (result.success) {
+        return NextResponse.json({ data: result.data, status: 200 })
+    } else {
+        return NextResponse.json({ message: result.error, status: 400 })
+    }
 }
