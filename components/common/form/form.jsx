@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 export default function Form({ ...props }) {
-  const [fields, setFields] = useState([]);
+  
 
   useEffect(() => {
     let inputFields = [];
@@ -16,11 +16,7 @@ export default function Form({ ...props }) {
 
   return (
     <>
-      <ul>
-        {fields.map((field) => (
-          <li>{field}</li>
-        ))}
-      </ul>
+
     </>
   );
 }
