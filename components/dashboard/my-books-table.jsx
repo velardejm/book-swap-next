@@ -12,14 +12,6 @@ export default function MyBooksTable({ myBooks }) {
   const [isAddBookOpen, setIsAddBookOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
-  const closeEdit = () => {
-    setIsEditOpen(false);
-  };
-
-  const openEdit = () => {
-    setIsEditOpen(true);
-  };
-
   return (
     <>
       <table className="table">
@@ -35,21 +27,14 @@ export default function MyBooksTable({ myBooks }) {
           </tr>
         </thead>
         <tbody>
-          {/* rows */}
-          {/* {myBooks.map((book, index) => {
-              return <BookCard key={index} book={book} />;
-            })} */}
-
           {myBooks.map((book, index) => {
             return (
               <BookCard
                 key={index}
                 {...{
                   book,
-                  openEdit,
-                  closeEdit,
+                  setIsEditOpen,
                   setSelectedBook,
-                  selectedBook,
                 }}
               />
             );
@@ -58,10 +43,16 @@ export default function MyBooksTable({ myBooks }) {
         {/* foot */}
         <tfoot></tfoot>
       </table>
+      <button
+        className="btn btn-primary"
+        onClick={() => setIsAddBookOpen(true)}
+      >
+        Add Book
+      </button>
 
       {isEditOpen && (
         // <Suspense fallback={<p>Loading...</p>}>
-        <EditBook selectedBook={selectedBook} closeEdit={closeEdit} />
+        <EditBook selectedBook={selectedBook} setIsEditOpen={setIsEditOpen} />
         // </Suspense>
       )}
 

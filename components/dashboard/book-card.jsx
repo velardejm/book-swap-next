@@ -2,10 +2,8 @@
 
 export default function BookCard({
   book,
-  openEdit,
-  closeEdit,
   setSelectedBook,
-  selectedBook,
+  setIsEditOpen,
 }) {
   const { title, author, genre, owner_id, condition } = book;
 
@@ -24,7 +22,7 @@ export default function BookCard({
             className="mr-4 hover:cursor-pointer"
             onClick={() => {
               setSelectedBook(book);
-              openEdit();
+              setIsEditOpen(true);
             }}
           />
           <img

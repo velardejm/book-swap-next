@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import { updateBook } from "@/lib/actions";
 
-export default function EditBook({ selectedBook, closeEdit }) {
+export default function EditBook({ selectedBook, setIsEditOpen }) {
   const { title, id } = selectedBook;
   const [bookTitle, setBookTitle] = useState(title);
   const updateBookWithId = updateBook.bind(null, id);
@@ -19,7 +19,7 @@ export default function EditBook({ selectedBook, closeEdit }) {
   const handleSubmit = async (id, formData) => {
     const updateActionResult = await updateBookWithId(id, formData);
     if (updateActionResult) {
-      closeEdit();
+      setIsEditOpen(false);
     }
   };
 
