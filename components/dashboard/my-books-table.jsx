@@ -56,7 +56,7 @@ export default function MyBooksTable({ myBooks }) {
         // </Suspense>
       )}
 
-      {isAddBookOpen && <AddBook />}
+      {isAddBookOpen && <AddBook setIsAddBookOpen={setIsAddBookOpen} />}
     </>
   );
 }
