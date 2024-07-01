@@ -7,3 +7,8 @@ export const updateForm = (e, setter) => {
         };
     });
 };
+
+export const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };

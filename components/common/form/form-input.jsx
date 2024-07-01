@@ -66,7 +66,13 @@ export const EmailInputFocused = ({ value, handleInput }) => {
   return <EmailInput {...{ value, handleInput }} autoFocus={true} />;
 };
 
-export const PasswordInput = ({ value, handleInput, placeholder }) => {
+export const PasswordInput = ({
+  value,
+  name,
+  handleInput,
+  placeholder,
+  autoFocus,
+}) => {
   return (
     <label className={baseLabelClass}>
       <img
@@ -77,14 +83,19 @@ export const PasswordInput = ({ value, handleInput, placeholder }) => {
       <input
         type="password"
         className="grow"
-        name="password"
+        name={name || "password"}
         placeholder={placeholder || "Password"}
-        value={value}
+        // value={value}
         onChange={handleInput}
+        autoFocus={autoFocus || false}
         required
       />
     </label>
   );
+};
+
+export const PasswordInputFocused = ({ value, handleInput }) => {
+  return <PasswordInput {...{ value, handleInput }} autoFocus={true} />;
 };
 
 export const PasswordInputVerification = ({ value, handleInput }) => {
@@ -92,6 +103,7 @@ export const PasswordInputVerification = ({ value, handleInput }) => {
     <PasswordInput
       {...{ value, handleInput }}
       placeholder={"Verify Password"}
+      name="password-verification"
     />
   );
 };
