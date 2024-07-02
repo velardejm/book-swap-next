@@ -1,20 +1,29 @@
 "use client";
 import { useState, useEffect } from "react";
-
 import { updateBook } from "@/lib/actions";
+import { updateForm } from "@/utils/helpers";
+
+import { TextInputFocused } from "../common/form/form-input";
 
 export default function EditBook({ selectedBook, setIsEditOpen }) {
-  const { title, id } = selectedBook;
-  const [bookTitle, setBookTitle] = useState(title);
-  const updateBookWithId = updateBook.bind(null, id);
+  const [updatedBook, setUpdatedBook] = useState({
+    title: selectedBook.title,
+    author: selectedBook.author,
+    genre: selectedBook.genre,
+    condition: selectedBook.condition,
+    id: selectedBook.id,
+  });
+  const { title, author, genre, condition, id } = updatedBook;
+  const updateBookWithId = updateBook.bind(null, selectedBook.id);
 
   useEffect(() => {
-    setBookTitle(selectedBook.title);
+    setUpdatedBook({
+      title: selectedBook.title,
+      id: selectedBook.id,
+      genre: selectedBook.genre,
+      condition: selectedBook.condition,
+    });
   }, [selectedBook]);
-
-  const handleChange = (e) => {
-    setBookTitle(e.target.value);
-  };
 
   const handleSubmit = async (id, formData) => {
     const updateActionResult = await updateBookWithId(id, formData);
@@ -26,17 +35,37 @@ export default function EditBook({ selectedBook, setIsEditOpen }) {
   return (
     <>
       <form action={handleSubmit}>
-        <label className="input input-bordered flex items-center gap-2 mb-4">
-          <input
-            type="text"
-            className="grow"
-            placeholder="Username"
+        <td>
+          <TextInputFocused
             name="title"
-            autoFocus="true"
-            value={bookTitle}
-            onChange={handleChange}
+            value={title}
+            handleInput={(e) => updateForm(e, setUpdatedBook)}
           />
-        </label>
+        </td>
+        <td>
+          <TextInputFocused
+            name="author"
+            value={author}
+            handleInput={(e) => updateForm(e, setUpdatedBook)}
+          />
+        </td>
+        <td>
+          <TextInputFocused
+            name="genre"
+            value={genre}
+            handleInput={(e) => updateForm(e, setUpdatedBook)}
+          />
+        </td>
+        <td>
+          <TextInputFocused
+            name="condition"
+            value={condition}
+            handleInput={(e) => updateForm(e, setUpdatedBook)}
+          />
+        </td>
+        <td></td>
+        <td></td>
+
         <button
           className="btn btn-secondary block mx-auto mt-8 px-8"
           type="submit"

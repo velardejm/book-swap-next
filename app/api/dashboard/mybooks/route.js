@@ -1,24 +1,11 @@
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
-import { jwtVerify } from "jose";
-import { queryGetMyBooks } from "@/utils/dashboard-queries";
+import { queryGetMyBooks, queryUpdateBook } from "@/utils/dashboard-queries";
 import { authenticate } from "@/lib/auth";
 
 export async function GET() {
-  //   const authorization = headers().get("authorization");
-  //   if (!authorization) {
-  //     return NextResponse.json({
-  //       success: false,
-  //       error: "Not authorized to access data.",
-  //     });
-  //   }
-  //   const token = authorization && authorization.split(" ")[1];
-  //   const key = new TextEncoder().encode("SECRET");
-  //   const { payload } = await jwtVerify(token, key);
-
   const response = await authenticate();
   if (!response.success)
-    return NextResponse.json({ message: result.error, status: 401 });
+    return NextResponse.json({ message: response.error, status: 401 });
   const payload = response.data;
   const result = await queryGetMyBooks(payload.userId);
   if (result.success) {
@@ -28,9 +15,17 @@ export async function GET() {
   }
 }
 
-export async function POST() {
+export async function POST(req) {
+  const bookData = await req.json();
+  const response = await authenticate();
   if (!response.success)
-    return NextResponse.json({ message: result.error, status: 401 });
-  const payload = response.data;
-  // perform query
+    return NextResponse.json({ message: response.error, status: 401 });
+  const result = await queryUpdateBook(bookData);
+  console.log(result);
+  if (result.success) {
+    return NextResponse.json({ data: result.data, status: 200 });
+  } else {
+    return NextResponse.json({ message: result.error, status: 400 });
+  }
 }
+
