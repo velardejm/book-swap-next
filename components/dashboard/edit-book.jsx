@@ -56,6 +56,7 @@ export default function EditBook({ selectedBook, setIsEditOpen }) {
             handleInput={(e) => updateForm(e, setUpdatedBook)}
           />
         </td>
+        <td></td>
         <td>
           <TextInputFocused
             name="condition"
@@ -63,9 +64,8 @@ export default function EditBook({ selectedBook, setIsEditOpen }) {
             handleInput={(e) => updateForm(e, setUpdatedBook)}
           />
         </td>
-        <td></td>
-        <td></td>
 
+        <td></td>
         <button
           className="btn btn-secondary block mx-auto mt-8 px-8"
           type="submit"

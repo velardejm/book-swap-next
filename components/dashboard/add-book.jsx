@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { addBook } from "@/lib/actions";
 import { TextInputFocused, TextInput } from "../common/form/form-input";
 import SubmitButton2 from "../common/form/form-submit-2";
 
@@ -15,10 +16,12 @@ export default function AddBook({ setIsAddBookOpen }) {
   });
   const { title, author, genre, condition } = formInput;
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (formData) => {
     await new Promise((resolve) => {
       setTimeout(resolve, 1000);
     });
+    await addBook(formData);
+    setIsAddBookOpen(false);
   };
 
   return (
