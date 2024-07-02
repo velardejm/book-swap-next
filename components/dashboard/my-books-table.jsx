@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, lazy, Suspense } from "react";
-import BookCard from "./book-card";
+import BookDetails from "./book-details";
 import EditBook from "./edit-book";
 import AddBook from "./add-book";
 
@@ -29,7 +29,7 @@ export default function MyBooksTable({ myBooks }) {
         <tbody>
           {myBooks.map((book, index) => {
             return (
-              <BookCard
+              <BookDetails
                 key={index}
                 {...{
                   book,
