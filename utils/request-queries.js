@@ -21,7 +21,7 @@ export async function queryGetRequests(userId) {
                 return { requester: requester.rows[0], requestedBook: requestedBook.rows[0], offerredBook: offerredBook.rows[0] };
             })
         )
-        console.log(requestDetails);
+        // console.log(requestDetails);
         return requestDetails;
     };
     return await handlelQuery(queryFunction, userId);

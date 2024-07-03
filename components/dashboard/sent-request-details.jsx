@@ -1,5 +1,5 @@
-export default function RequestDetails({
-  requester,
+export default function SentRequestDetails({
+  sentTo,
   requestedBook,
   offerredBook,
 }) {
@@ -8,11 +8,10 @@ export default function RequestDetails({
       <tr className="hover:bg-gray-100">
         <td>{requestedBook?.title || "(Not Found)"}</td>
         <td>{offerredBook?.title || "(Not Found)"}</td>
-        <td>{requester?.name}</td>
+        <td>{sentTo?.name}</td>
         <td>
           <div className="flex">
-            <button className="btn mr-5">Accept</button>
-            <button className="btn">Reject</button>
+            <p>Status</p>
           </div>
         </td>
       </tr>

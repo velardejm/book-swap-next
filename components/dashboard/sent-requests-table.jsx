@@ -1,9 +1,8 @@
 // "use client";
 
 // import { useState } from "react";
-// import RequestDetails from "./request-details";
 
-export default function RequestsTable({ children }) {
+export default function SentRequestsTable({ children }) {
   // const [isEditOpen, setIsEditOpen] = useState(false);
   // const [isAddBookOpen, setIsAddBookOpen] = useState(false);
   // const [selectedBook, setSelectedBook] = useState(null);
@@ -16,8 +15,8 @@ export default function RequestsTable({ children }) {
           <tr>
             <th>Requested Book</th>
             <th>Offerred Book</th>
-            <th>Request by</th>
-            <th>Approve / Reject </th>
+            <th>Sent To</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
