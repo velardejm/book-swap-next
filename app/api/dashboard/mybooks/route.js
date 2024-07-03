@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { queryGetMyBooks, queryAddBook, queryUpdateBook } from "@/utils/dashboard-queries";
+import {
+  queryGetMyBooks,
+  queryAddBook,
+  queryUpdateBook,
+} from "@/utils/dashboard-queries";
 import { authenticate } from "@/lib/auth";
 
 export async function GET() {
@@ -14,8 +18,6 @@ export async function GET() {
     return NextResponse.json({ message: result.error, status: 400 });
   }
 }
-
-
 
 // booksRouter.post("/new", authenticateToken, async (req, res) => {
 //   try {
@@ -60,10 +62,12 @@ export async function POST(req) {
     return NextResponse.json({ message: response.error, status: 401 });
   const payload = response.data;
 
+  console.log(payload);
+
   const bookDataWithOwnerId = {
     ownerId: payload.userId,
-    ...bookData
-  }
+    ...bookData,
+  };
 
   const result = await queryAddBook(bookDataWithOwnerId);
   console.log(result);
@@ -73,7 +77,6 @@ export async function POST(req) {
     return NextResponse.json({ message: result.error, status: 400 });
   }
 }
-
 
 export async function PUT(req) {
   const bookData = await req.json();
@@ -88,4 +91,3 @@ export async function PUT(req) {
     return NextResponse.json({ message: result.error, status: 400 });
   }
 }
-

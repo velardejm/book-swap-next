@@ -10,18 +10,24 @@ export async function queryGetMyBooks(userId) {
   return await handlelQuery(queryFunction, userId);
 }
 
-
 export async function queryAddBook(bookData) {
   const queryFunction = async (bookData) => {
     const { ownerId, title, author, genre, condition } = bookData;
+    console.log(bookData);
     // console.log(id, title, author, genre, condition);
-    const queryString = "INSERT INTO books (title, author, genre, condition, owner_id) VALUES ($1, $2, $3, $4, $5)";
-    const queryData = await pool.query(queryString, [title, author, genre, condition, ownerId]);
+    const queryString =
+      "INSERT INTO books (title, author, genre, condition, owner_id) VALUES ($1, $2, $3, $4, $5)";
+    const queryData = await pool.query(queryString, [
+      title,
+      author,
+      genre,
+      condition,
+      ownerId,
+    ]);
     return queryData.rows;
   };
   return await handlelQuery(queryFunction, bookData);
 }
-
 
 //     const sqlAddBook =
 //       "INSERT INTO books (title, author, genre, condition, owner_id) VALUES ($1, $2, $3, $4, $5) RETURNING id";
@@ -37,13 +43,19 @@ export async function queryAddBook(bookData) {
 //       req.user.userId
 //     ]);
 
-
 export async function queryUpdateBook(bookData) {
   const queryFunction = async (bookData) => {
-    const { id, title, author, genre, condition } = bookData
+    const { id, title, author, genre, condition } = bookData;
     console.log(id, title, author, genre, condition);
-    const queryString = "UPDATE books SET title = $1, author = $2, genre = $3, condition = $4 WHERE id = $5";
-    const queryData = await pool.query(queryString, [title, author, genre, condition, id]);
+    const queryString =
+      "UPDATE books SET title = $1, author = $2, genre = $3, condition = $4 WHERE id = $5";
+    const queryData = await pool.query(queryString, [
+      title,
+      author,
+      genre,
+      condition,
+      id,
+    ]);
     return queryData.rows;
   };
   return await handlelQuery(queryFunction, bookData);

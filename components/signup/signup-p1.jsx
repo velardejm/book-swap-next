@@ -6,7 +6,7 @@ import Alert from "../common/alert";
 import { useState } from "react";
 import SubmitButton from "../common/submit-button";
 import { updateForm, validateEmail } from "@/utils/helpers";
-import { TextInputFocused, EmailInput } from "../common/form/form-input";
+import { TextInput, EmailInputFocused } from "../common/form/form-input";
 
 export default function SignupP1({ setPage, formData, setFormData }) {
   const { username, email, name } = formData;
@@ -34,12 +34,12 @@ export default function SignupP1({ setPage, formData, setFormData }) {
   return (
     <>
       <form className="mt-4 w-72 self-center" action={handleSubmit}>
-        <EmailInput
+        <EmailInputFocused
           value={email}
           handleInput={(e) => updateForm(e, setFormData)}
         />
 
-        <TextInputFocused
+        <TextInput
           name="username"
           placeholder="Username"
           value={username}
@@ -47,7 +47,7 @@ export default function SignupP1({ setPage, formData, setFormData }) {
           handleInput={(e) => updateForm(e, setFormData)}
         />
 
-        <TextInputFocused
+        <TextInput
           name="name"
           placeholder="Name"
           value={name}

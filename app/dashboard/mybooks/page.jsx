@@ -6,7 +6,6 @@ export default async function MyBooks() {
   const response = await fetch("http://localhost:3001/dashboard/mybooks", {
     next: { tags: ["mybooks"] },
     cache: "no-store",
-    credentials: "include",
   });
 
   let myBooks = await response.json();

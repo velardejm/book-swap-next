@@ -1,6 +1,6 @@
 "use client";
 
-export default function BookDetails({
+export default function MyBookDetails({
   book,
   setSelectedBook,
   setIsEditOpen,

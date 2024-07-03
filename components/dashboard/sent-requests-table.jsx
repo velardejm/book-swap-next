@@ -19,9 +19,7 @@ export default function SentRequestsTable({ children }) {
             <th>Status</th>
           </tr>
         </thead>
-        <tbody>
-          {children}
-        </tbody>
+        <tbody>{children}</tbody>
         <tfoot></tfoot>
       </table>
     </>

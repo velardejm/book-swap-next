@@ -1,29 +1,41 @@
+import BookDetails from "@/components/books/book-details";
+import { cookies } from "next/headers";
+
 export default async function Books() {
-  const response = await fetch("http://localhost:8000/api", {
+  const session = cookies().get("session")?.value;
+  const response = await fetch("http://localhost:8000/api/books", {
     cache: "no-store",
+    headers: {
+      Authorization: `Bearer ${session}`,
+    },
   });
-  const myBooks = await response.json();
+  const responseData = await response.json();
+  if (responseData.status !== 200) return null;
+  const books = responseData.data;
 
   return (
-    <div>
-      <h1 className="text-center text-3xl font-bold">My Books</h1>
-      <ul className="flex flex-col items-center">
-        {myBooks.map((book, index) => {
-          const { title } = book;
-          return (
-            <li className="mb-2" key={index}>
-              <div className="card w-96 bg-base-100 shadow-xl">
-                <div className="card-body">
-                  <h2 className="card-title">{title}</h2>
-                  <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Swap</button>
-                  </div>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      <h2 className="text-center mt-10 mb-4 text-2xl font-bold">Book List</h2>
+      <div className="overflow-x-auto mx-10">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Genre</th>
+              <th>Condition</th>
+              <th>{/* <button className="btn btn-primary">Swap</button> */}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map((book, index) => {
+              return <BookDetails key={index} book={book} />;
+            })}
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </>
   );
 }
