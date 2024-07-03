@@ -1,4 +1,4 @@
-const { pool } = require("../db");
+const { pool } = require("../db.js");
 
 exports.queryGetAllBooks = async function () {
   const sqlGetAllBooks = "SELECT * FROM books";

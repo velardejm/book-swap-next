@@ -1,0 +1,12 @@
+1. Refactor the swap request queries.
+    
+    Current:
+        For new swap request queries, only the ids are saved. 
+        When the swap request details are fetched, queries for 
+        getting book details and book owner details are run for each
+        swap request.
+    
+    Required update:
+        When saving the swap requests, the offerred and requested book titles
+        along with the Requestor name (and email?) must be saved in the db.
+        By this way, no extra queries will be required.
