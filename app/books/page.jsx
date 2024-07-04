@@ -25,7 +25,7 @@ export default async function Books() {
               <th>Author</th>
               <th>Genre</th>
               <th>Condition</th>
-              <th>{/* <button className="btn btn-primary">Swap</button> */}</th>
+              {/* <th><button className="btn btn-primary">Swap</button></th> */}
             </tr>
           </thead>
           <tbody>

@@ -1,4 +1,4 @@
-export default function BookDetails({ book }) {
+export default function BookDetails({ book, children }) {
   const { title, author, genre, condition } = book;
   return (
     <>
@@ -7,9 +7,10 @@ export default function BookDetails({ book }) {
         <td>{author}</td>
         <td>{genre}</td>
         <td>{condition}</td>
-        <td className="flex">
+        {/* <td className="flex">
           <button className="btn">Swap</button>
-        </td>
+        </td> */}
+        {children}
       </tr>
     </>
   );

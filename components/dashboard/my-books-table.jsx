@@ -5,7 +5,7 @@ import MyBookDetails from "./my-book-details";
 import EditBook from "./edit-book";
 import AddBook from "./add-book";
 
-const LazyEditBook = lazy(() => import("./edit-book"));
+// const LazyEditBook = lazy(() => import("./edit-book"));
 
 export default function MyBooksTable({ myBooks }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
