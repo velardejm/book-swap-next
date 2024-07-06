@@ -10,7 +10,12 @@ import BookDetailsSwap from "./book-details-swap";
 
 export default function ListingsTable({ books }) {
   const [isSwapRequestOpen, setIsSwapRequestOpen] = useState(false);
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedBook, setSelectedBook] = useState({
+    title:'',
+    author:'',
+    genre:'',
+    condition:''
+  });
 
   return (
     <>

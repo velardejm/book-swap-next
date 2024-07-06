@@ -6,7 +6,7 @@ export default function BookDetailsSwap({
   setSelectedBook,
 }) {
   const handleClick = () => {
-    setSelectedBook(book.title);
+    setSelectedBook(book);
     setIsSwapRequestOpen(true);
   };
   return (
