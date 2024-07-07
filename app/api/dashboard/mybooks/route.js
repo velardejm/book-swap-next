@@ -9,7 +9,6 @@ import { headers } from "next/headers";
 import { cookies } from "next/headers";
 
 export async function GET(request) {
-  console.log("test");
   // const cookie = request.cookies.get("userId");
   // console.log('cookie: ', cookie);
   const response = await authenticate();
