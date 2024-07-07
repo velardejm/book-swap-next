@@ -1,8 +1,10 @@
 import MyBooksTable from "@/components/dashboard/my-books-table";
 import DeleteBookModal from "@/components/dashboard/delete-book-modal";
 import { NextRequest } from "next/server";
+import { headers } from "next/headers";
 
 export default async function MyBooks() {
+  // console.log(headers().get("userId"));
   const response = await fetch("http://localhost:3001/dashboard/mybooks", {
     next: { tags: ["mybooks"] },
     cache: "no-store",

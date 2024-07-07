@@ -1,12 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import {
   queryGetMyBooks,
   queryAddBook,
   queryUpdateBook,
 } from "@/utils/dashboard-queries";
 import { authenticate } from "@/lib/auth";
+import { headers } from "next/headers";
+import { cookies } from "next/headers";
 
-export async function GET() {
+export async function GET(request) {
+  console.log("test");
+  // const cookie = request.cookies.get("userId");
+  // console.log('cookie: ', cookie);
   const response = await authenticate();
   if (!response.success)
     return NextResponse.json({ message: response.error, status: 401 });
