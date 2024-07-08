@@ -2,23 +2,22 @@
 
 import { useState } from "react";
 import SwapRequest from "./swap-request";
-
-// import { books } from "@/public/dummydata";
 import BookDetailsSwap from "./book-details-swap";
-
-// const LazyEditBook = lazy(() => import("./edit-book"));
 
 export default function ListingsTable({ listings, userBooks }) {
   const [isSwapRequestOpen, setIsSwapRequestOpen] = useState(false);
-  const [selectedBook, setSelectedBook] = useState({
-    title: "",
-    author: "",
-    genre: "",
-    condition: "",
-  });
+  const [requestedBook, setRequestedBook] = useState(null);
+  const [offeredBook, setOfferredBook] = useState(null);
+
+  const submitSwapRequest = () => {
+    const { id: requestedBookId, owner_id: requestedBookOwnerId } =
+      requestedBook;
+    const { id: offerredBookId, owner_id: offerredBookOwnerId } = offeredBook;
+  };
 
   return (
     <>
+      <h1>{offeredBook?.title}</h1>
       <table className="table">
         {/* head */}
         <thead>
@@ -39,7 +38,7 @@ export default function ListingsTable({ listings, userBooks }) {
                 {...{
                   book,
                   setIsSwapRequestOpen,
-                  setSelectedBook,
+                  setRequestedBook,
                 }}
               />
             );
@@ -52,8 +51,11 @@ export default function ListingsTable({ listings, userBooks }) {
       {isSwapRequestOpen && (
         <SwapRequest
           setIsSwapRequestOpen={setIsSwapRequestOpen}
-          selectedBook={selectedBook}
+          requestedBook={requestedBook}
           userBooks={userBooks}
+          offeredBook={offeredBook}
+          setOfferredBook={setOfferredBook}
+          submitSwapRequest={submitSwapRequest}
         />
       )}
     </>

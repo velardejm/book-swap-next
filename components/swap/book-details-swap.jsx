@@ -3,10 +3,10 @@ import BookDetails from "../books/book-details";
 export default function BookDetailsSwap({
   book,
   setIsSwapRequestOpen,
-  setSelectedBook,
+  setRequestedBook,
 }) {
   const handleClick = () => {
-    setSelectedBook(book);
+    setRequestedBook(book);
     setIsSwapRequestOpen(true);
   };
   return (

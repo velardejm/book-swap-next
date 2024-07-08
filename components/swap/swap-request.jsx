@@ -1,8 +1,14 @@
 import Dropdown from "./dropdown";
 
-export default function SwapRequest({ setIsSwapRequestOpen, selectedBook, userBooks }) {
-  const { title, author, genre, condition } = selectedBook;
-  const booksToSwap = ["Book 1", "Book 2"];
+export default function SwapRequest({
+  setIsSwapRequestOpen,
+  requestedBook,
+  userBooks,
+  offeredBook,
+  setOfferredBook,
+  submitSwapRequest,
+}) {
+  const { title, author, genre, condition } = requestedBook;
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-75">
@@ -25,11 +31,20 @@ export default function SwapRequest({ setIsSwapRequestOpen, selectedBook, userBo
             </div>
             <div className="min-w-72">
               <p className="mb-2">Book to swap:</p>
-              <Dropdown books={userBooks}/>
+              <Dropdown
+                books={userBooks}
+                offeredBook={offeredBook}
+                setOfferredBook={setOfferredBook}
+              />
             </div>
           </div>
           <div className="flex justify-end">
-            <button className="btn btn-primary mr-4">Swap</button>
+            <button
+              className="btn btn-primary mr-4"
+              onClick={submitSwapRequest}
+            >
+              Swap
+            </button>
             <button
               className="btn btn-warning"
               onClick={() => setIsSwapRequestOpen(false)}
