@@ -8,13 +8,13 @@ import BookDetailsSwap from "./book-details-swap";
 
 // const LazyEditBook = lazy(() => import("./edit-book"));
 
-export default function ListingsTable({ books }) {
+export default function ListingsTable({ listings, userBooks }) {
   const [isSwapRequestOpen, setIsSwapRequestOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState({
-    title:'',
-    author:'',
-    genre:'',
-    condition:''
+    title: "",
+    author: "",
+    genre: "",
+    condition: "",
   });
 
   return (
@@ -32,7 +32,7 @@ export default function ListingsTable({ books }) {
           </tr>
         </thead>
         <tbody>
-          {books.map((book, index) => {
+          {listings.map((book, index) => {
             return (
               <BookDetailsSwap
                 key={index}
@@ -53,6 +53,7 @@ export default function ListingsTable({ books }) {
         <SwapRequest
           setIsSwapRequestOpen={setIsSwapRequestOpen}
           selectedBook={selectedBook}
+          userBooks={userBooks}
         />
       )}
     </>

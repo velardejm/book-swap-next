@@ -1,6 +1,6 @@
 import Dropdown from "./dropdown";
 
-export default function SwapRequest({ setIsSwapRequestOpen, selectedBook }) {
+export default function SwapRequest({ setIsSwapRequestOpen, selectedBook, userBooks }) {
   const { title, author, genre, condition } = selectedBook;
   const booksToSwap = ["Book 1", "Book 2"];
   return (
@@ -25,7 +25,7 @@ export default function SwapRequest({ setIsSwapRequestOpen, selectedBook }) {
             </div>
             <div className="min-w-72">
               <p className="mb-2">Book to swap:</p>
-              <Dropdown />
+              <Dropdown books={userBooks}/>
             </div>
           </div>
           <div className="flex justify-end">

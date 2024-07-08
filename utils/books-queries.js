@@ -12,11 +12,24 @@ export async function queryGetBooks(userId) {
 
 export async function queryGetBookListings(userId) {
   const queryFunction = async (userId) => {
-    const queryString = "SELECT * FROM books WHERE owner_id != $1";
-    const queryData = await pool.query(queryString, [userId]);
-    return queryData.rows;
+    const queryGetListings = "SELECT * FROM books WHERE owner_id != $1";
+    const queryGetUserBooks = "SELECT * FROM books WHERE owner_id = $1";
+    const [listingsData, userBooksData] = await Promise.all([
+      pool.query(queryGetListings, [userId]),
+      pool.query(queryGetUserBooks, [userId]),
+    ])
+    // const listingsData = await pool.query(queryGetListings, [userId]);
+    // const userBooksData = await pool.query(queryGetUserBooks, [userId]);
+    // console.log(listingsData.rows);
+    // console.log(userBooksData.rows);
+    const data = {
+      listingsData: listingsData.rows,
+      userBooksData: userBooksData.rows
+    }
+    return data
   };
   return await handlelQuery(queryFunction, userId);
 }
+
 
 

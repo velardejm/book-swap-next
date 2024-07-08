@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 export const updateForm = (e, setter) => {
     const { name, value } = e.target;
     setter((prev) => {
@@ -16,11 +14,16 @@ export const validateEmail = (email) => {
 };
 
 
-export const authorizedFetch = async (url, cacheType) => {
-    const session = cookies().get("session")?.value;
-    const options = cacheType ? {
-        cache: "no-store"
-    } : null
-    const response = await fetch(url, options)
-    const responseData = await response.json();
-}
+// export const authorizedFetch = async (url, cacheType, sessionCookie, tags) => {
+//     const options = {
+//         cache: cacheType || "default",
+//         headers: {
+//             Authorization: `Bearer ${sessionCookie}`
+//         },
+//         next: { tags: tags || [] }
+//     }
+
+//     const response = await fetch(url, options)
+//     const responseData = await response.json();
+//     return responseData;
+// }

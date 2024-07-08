@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-const Dropdown = ({}) => {
-  const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const Dropdown = ({ books }) => {
+  const bookTitles = books.map((book) => book.title);
+  const options = bookTitles;
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [isOpen, setIsOpen] = useState(false);

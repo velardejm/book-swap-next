@@ -61,6 +61,9 @@ export default function DashboardNavbar() {
               <Link className="" href="/dashboard/sent-requests">
                 Sent Requests
               </Link>
+              <Link className="" href="/dashboard/listings">
+                Listings
+              </Link>
             </li>
           </ul>
         </div>
