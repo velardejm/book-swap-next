@@ -34,12 +34,17 @@ CREATE TABLE OwnedBooks (
     FOREIGN KEY (book_id) REFERENCES Books(id)
 );
 
+-- requested_book_id, requested_book_title, offerred_book_id, offerred_book_title, requester_name
+
 CREATE TABLE SwapRequests (
     id SERIAL PRIMARY KEY,
     requester_id INT,
+    requester_name VARCHAR(255),
     requestee_id INT,
     requested_book_id INT,
+    requested_book_title VARCHAR(255),
     offerred_book_id INT,
+    offerred_book_title VARCHAR(255),
     status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'accepted', 'rejected', 'completed')),
     FOREIGN KEY (requester_id) REFERENCES Users(id),
     FOREIGN KEY (requestee_id) REFERENCES Users(id),

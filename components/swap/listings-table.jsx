@@ -3,16 +3,15 @@
 import { useState } from "react";
 import SwapRequest from "./swap-request";
 import BookDetailsSwap from "./book-details-swap";
+import { sendSwapRequest } from "@/lib/actions";
 
 export default function ListingsTable({ listings, userBooks }) {
   const [isSwapRequestOpen, setIsSwapRequestOpen] = useState(false);
   const [requestedBook, setRequestedBook] = useState(null);
-  const [offeredBook, setOfferredBook] = useState(null);
+  const [offerredBook, setOfferredBook] = useState(null);
 
   const submitSwapRequest = () => {
-    const { id: requestedBookId, owner_id: requestedBookOwnerId } =
-      requestedBook;
-    const { id: offerredBookId, owner_id: offerredBookOwnerId } = offeredBook;
+    sendSwapRequest(requestedBook, offerredBook);
   };
 
   return (

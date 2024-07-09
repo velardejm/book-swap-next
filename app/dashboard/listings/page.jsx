@@ -1,6 +1,6 @@
 // import { books } from "@/public/dummydata";
 import ListingsTable from "@/components/swap/listings-table";
-import { authorizedFetch } from "@/utils/helpers-server";
+import { authorizedFetch } from "@/lib/actions";
 
 export default async function Listings() {
   // const response = await fetch("http://localhost:8000/api/dashboard/listings", {

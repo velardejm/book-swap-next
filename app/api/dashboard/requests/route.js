@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { authenticate } from "@/lib/auth";
 import { queryGetRequests } from "@/utils/request-queries";
+
 // import { queryAddBook } from "@/utils/dashboard-queries";
 
 export async function GET(req) {
@@ -20,4 +21,8 @@ export async function GET(req) {
       } else {
         return NextResponse.json({ message: result.error, status: 400 });
       }
+}
+
+export async function POST(req) {
+  
 }

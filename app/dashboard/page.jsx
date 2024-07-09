@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import MyBooksTable from "@/components/dashboard/my-books-table";
 import DeleteBookModal from "@/components/dashboard/delete-book-modal";
-import { authorizedFetch } from "@/utils/helpers-server";
+import { authorizedFetch } from "@/lib/actions";
 // import { getSessionData } from "@/lib/auth";
 
 export default async function MyBooks() {
