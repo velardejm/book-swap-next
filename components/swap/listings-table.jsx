@@ -16,7 +16,7 @@ export default function ListingsTable({ listings, userBooks }) {
 
   return (
     <>
-      <h1>{offeredBook?.title}</h1>
+      <h1>{offerredBook?.title}</h1>
       <table className="table">
         {/* head */}
         <thead>
@@ -52,7 +52,7 @@ export default function ListingsTable({ listings, userBooks }) {
           setIsSwapRequestOpen={setIsSwapRequestOpen}
           requestedBook={requestedBook}
           userBooks={userBooks}
-          offeredBook={offeredBook}
+          offerredBook={offerredBook}
           setOfferredBook={setOfferredBook}
           submitSwapRequest={submitSwapRequest}
         />

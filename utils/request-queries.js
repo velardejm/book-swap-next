@@ -1,5 +1,6 @@
 import { pool } from "@/app/api/db";
 import { handlelQuery } from "./query-helpers.js";
+import { queryGetUserName } from "./user-queries.js";
 
 export async function queryGetRequests(userId) {
     console.log('test');
@@ -62,6 +63,20 @@ export async function queryGetRequests2(userId) {
 
 
 
-export async function addRequest(request) {
+export async function addSwapRequest(request) {
+    // console.log('from query: ',request);
 
+    const { requesterId, offerredBookId, offerredBookTitle, requesteeId, requestedBookId, requestedBookTitle } = request;
+    const { data } = await queryGetUserName(requesterId);
+    console.log(data.name);
+
+    // const queryFunction = async (request) => {
+    //     const { requesterId, offerredBookId, offerredBookTitle, requesteeId, requestedBookId, requestedBookTitle } = request;
+    //     const requesterName = await queryGetUserName(requesterId);
+    //     const queryFields = "requester_id, requester_name, offerred_book_id, offerred_book_title, requestee_id, requested_book_id, requested_book_title"
+    //     const queryString = `INSERT INTO swaprequests (${queryFields}) VALUES ($1, $2, $3, $4, $5, $6, $7)`;
+    //     const queryData = pool.query(queryString, [requesterId, requesterName, offerredBookId, offerredBookTitle, requesteeId, requestedBookId, requestedBookTitle]);
+    //     return true
+    // }
+    // return await handlelQuery(queryFunction, request);
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Dropdown = ({ books, offeredBook, setOfferredBook }) => {
+const Dropdown = ({ books, offerredBook, setOfferredBook }) => {
   // const [selectedOption, setSelectedOption] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +20,7 @@ const Dropdown = ({ books, offeredBook, setOfferredBook }) => {
         className="py-2 px-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         onClick={toggleDropdown}
       >
-        {offeredBook?.title || "Select an option"}
+        {offerredBook?.title || "Select an option"}
       </button>
 
       {isOpen && (

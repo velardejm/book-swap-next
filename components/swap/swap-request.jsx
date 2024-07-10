@@ -4,7 +4,7 @@ export default function SwapRequest({
   setIsSwapRequestOpen,
   requestedBook,
   userBooks,
-  offeredBook,
+  offerredBook,
   setOfferredBook,
   submitSwapRequest,
 }) {
@@ -33,7 +33,7 @@ export default function SwapRequest({
               <p className="mb-2">Book to swap:</p>
               <Dropdown
                 books={userBooks}
-                offeredBook={offeredBook}
+                offerredBook={offerredBook}
                 setOfferredBook={setOfferredBook}
               />
             </div>
