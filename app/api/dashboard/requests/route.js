@@ -26,9 +26,17 @@ export async function GET(req) {
 
 export async function POST(req) {
   const requestData = await req.json();
-  const queryResponse = await addSwapRequest(requestData);
-  // console.log(requestData);
-  // EXPECTED REQUEST DATA FROM req.json():
-  // const { requesterId, offerredBookId, offerredBookTitle, requesteeId, requestedBookId, requestedBookTitle } = request;
-  return NextResponse.json({ test: "Test" });
+  const { requesterId } = requestData;
+  const isAuthenticated = await authenticate();
+
+  if (!isAuthenticated.success) {
+    return NextResponse.json({ message: result.error, status: 400 });
+  }
+
+  if (isAuthenticated.data.userId === requesterId) {
+    const queryResponse = await addSwapRequest(requestData);
+    return NextResponse.json({ test: "Test" });
+  } else {
+    return NextResponse.json({ message: result.error, status: 400 });
+  }
 }
