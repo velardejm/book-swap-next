@@ -1,4 +1,4 @@
-1. Refactor the swap request queries.
+1. Refactor the swap request queries.  (Check if still valid)
     
     Current:
         For new swap request queries, only the ids are saved. 
@@ -10,3 +10,35 @@
         When saving the swap requests, the offerred and requested book titles
         along with the Requestor name (and email?) must be saved in the db.
         By this way, no extra queries will be required.
+
+
+24-Jul-24
+
+2. Implement swap logic below
+
+    1. In swap request window hide previously offerred books.
+    2. If the requester cancels the request, it will appear again
+        in the books that could be offerred
+    3. Requested books may be requested by others.
+        Scenario: A user will receive a request from two other
+                    users for the same book. When the user accepts
+                    one of the received requests, one will cancel
+                    automatically. The update will be done
+                    on the respective pages of the 3 users involved
+
+Swap Requet Window:
+    -Hide oferred books that are status:offerred or pending
+    -Keep status of requested books as available:
+
+When a swap request is sent:
+    -Update sent requests of requester
+    -Update received requests of requestee
+
+When a swap requests is accepted
+    -Update book ownership
+
+When a swap request is cancelled
+    -Return status of offerred book to available
+
+
+3. Implement Swap Notification Feature
